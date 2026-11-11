@@ -1,0 +1,41 @@
+# Olusturulan ozellik dosyalari (Oturum 2 uretir; buyuk ve yeniden uretilebilir)
+*_descriptors.csv
+*_ecfp4.csv
+*_maccs.csv
+
+# Egitilmis modeller (Oturum 3-4 uretir)
+*.joblib
+*.pkl
+
+# Oturum ciktilari (katilimcinin Drive'inda olusur)
+EBYUSEM2026_MLQSAR/
+sdf_ciktilari/
+*_lazypredict_tarama.csv
+*_test_tahminleri.csv
+*_kutuphane_tahminleri.csv
+*_secilen_adaylar.csv
+*_oturum01_kunye.json
+*_ad_parametreleri.json
+*_ad_test_analizi.csv
+*_egitim_test_bolunmesi.csv
+*_egitim_seti_smiles.csv
+*_shap_ozellik_onemi.csv
+*_regresyon_sonuclari.csv
+*_siniflandirma_sonuclari.csv
+
+# Not defterlerinin uretttigi grafikler
+*.png
+!assets/*.png
+
+# Gecici
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Kurs sirasinda calistirilan not defteri kopyalari
+*kopya*.ipynb
+*_copy.ipynb
+*-Copy*.ipynb

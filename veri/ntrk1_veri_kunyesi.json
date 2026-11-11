@@ -1,0 +1,101 @@
+{
+  "hedef_chembl_id": "CHEMBL2815",
+  "hedef_adi": "High affinity nerve growth factor receptor (NTRK1 / TrkA)",
+  "uniprot": "P04629",
+  "aktivite_tipi": "IC50",
+  "siniflandirma_esigi": 7.0,
+  "uretim_tarihi": "2026-11-11",
+  "ham_kayit": 8414,
+  "nihai_molekul": 4599,
+  "aktif": 2899,
+  "inaktif": 1700,
+  "aktif_yuzde": 63.0,
+  "pIC50_min": 3.2,
+  "pIC50_max": 10.16,
+  "pIC50_ortalama": 7.32,
+  "pIC50_std": 1.12,
+  "mantik_araligi": [
+    3.0,
+    12.0
+  ],
+  "pchembl_capraz_kontrol": {
+    "karsilastirilan": 8404,
+    "ortalama_fark": 0.0023011468156908213,
+    "max_fark": 0.005496221825573855
+  },
+  "temizlik_hunisi": [
+    {
+      "adim": "Ham ChEMBL kayitlari",
+      "molekul": 8414
+    },
+    {
+      "adim": "Kimlik + deger + SMILES tam olanlar",
+      "molekul": 8414
+    },
+    {
+      "adim": "Sayisal ve pozitif deger",
+      "molekul": 8414
+    },
+    {
+      "adim": "Molekul basina min deger (benzersiz ChEMBL ID)",
+      "molekul": 4600
+    },
+    {
+      "adim": "Gecerli kanonik SMILES (elenen: 0)",
+      "molekul": 4600
+    },
+    {
+      "adim": "Kanonik SMILES'a gore benzersiz yapi",
+      "molekul": 4600
+    },
+    {
+      "adim": "Mantiksal aralik 3.0-12.0 (elenen: 1)",
+      "molekul": 4599
+    },
+    {
+      "adim": "NIHAI veri seti",
+      "molekul": 4599
+    }
+  ],
+  "esik_secenekleri": [
+    {
+      "Esik (pIC50)": 6.0,
+      "IC50 (nM)": 1000.0,
+      "Aktif": 4019,
+      "Inaktif": 580,
+      "Aktif %": 87.4
+    },
+    {
+      "Esik (pIC50)": 6.5,
+      "IC50 (nM)": 316.2,
+      "Aktif": 3448,
+      "Inaktif": 1151,
+      "Aktif %": 75.0
+    },
+    {
+      "Esik (pIC50)": 7.0,
+      "IC50 (nM)": 100.0,
+      "Aktif": 2899,
+      "Inaktif": 1700,
+      "Aktif %": 63.0
+    },
+    {
+      "Esik (pIC50)": 7.5,
+      "IC50 (nM)": 31.6,
+      "Aktif": 2121,
+      "Inaktif": 2478,
+      "Aktif %": 46.1
+    },
+    {
+      "Esik (pIC50)": 8.0,
+      "IC50 (nM)": 10.0,
+      "Aktif": 1353,
+      "Inaktif": 3246,
+      "Aktif %": 29.4
+    }
+  ],
+  "tarama_kutuphanesi": {
+    "molekul": 3311,
+    "egitim_setiyle_ortak": 14
+  }
+}
