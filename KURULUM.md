@@ -95,6 +95,47 @@ Aşağıdakilerin **hiçbirine** ihtiyacınız yoktur:
 
 ---
 
+## 3b. Materyale GitHub olmadan erişmek (Drive ile dağıtım)
+
+Kurs deposu GitHub'da yayınlanmamışsa, materyal **Google Drive üzerinden** de
+dağıtılabilir. Not defterleri bu durumda da eksiksiz çalışır; yalnızca küçük
+bir ek adım gerekir.
+
+### Eğitmenin yapacağı
+
+1. `ebyusem2026-mlqsar.zip` arşivini açın.
+2. Google Drive'da bir klasör oluşturup `notebooks/` ve `veri/` içeriğini
+   yükleyin.
+3. Klasörü "bağlantıya sahip herkes görüntüleyebilir" olarak paylaşın.
+
+### Katılımcının yapacağı
+
+1. Paylaşılan Drive klasöründeki not defterini açın: sağ tık →
+   *Birlikte aç* → *Google Colaboratory*. Ardından
+   *Dosya → Drive'a kopya kaydet* ile kendi kopyanızı alın.
+2. **Veri dosyalarını proje klasörüne kopyalayın.** Not defterleri çıktıları
+   `Drive'ım/EBYUSEM2026_MLQSAR/` klasöründe arar. Paylaşılan `veri/`
+   klasöründeki şu dosyaları oraya kopyalayın:
+
+   - `ntrk1_siniflandirma.csv`
+   - `ntrk1_regresyon.csv`
+   - `tarama_kutuphanesi.csv`
+
+   (Klasör, herhangi bir not defterinin ikinci hücresi çalıştırıldığında
+   otomatik oluşur.)
+
+Bu kopyalama neden gerekli? Not defterleri girdilerini **önce Drive proje
+klasöründe** arar; bulamazsa kurs deposundan indirmeye çalışır. Depo
+yayınlanmamışsa ikinci yol çalışmaz, ama dosyalar Drive'da hazırsa birinci yol
+sorunsuz işler.
+
+> **Oturum 1 için not.** Bu oturum canlı ChEMBL sorgusu ile depodaki
+> dondurulmuş veriyi karşılaştırır. Depo erişilemiyorsa karşılaştırma bölümü
+> atlanır ve not defteri canlı veriyle devam eder — yapılandırma hücresinde
+> `VERI_KAYNAGI = "chembl"` yapmanız yeterlidir.
+
+---
+
 ## 4. Kurs günü
 
 Her oturumda [README.md](README.md) dosyasındaki program tablosundaki
