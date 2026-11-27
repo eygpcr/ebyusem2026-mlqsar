@@ -19,7 +19,7 @@ hazır veri setleri, teorik oturum notları ve kurs sonrası çalışma kaynakla
 
 | | |
 |---|---|
-| **Dr. Öğr. Üyesi Ekrem Yaşar** | Erzincan Binali Yıldırım Üniversitesi, Biyofizik Anabilim Dalı |
+| **Dr. Öğr. Üyesi Ekrem Yaşar** | Erzincan Binali Yıldırım Üniversitesi, Tıp Fakültesi, Biyofizik Anabilim Dalı |
 
 ---
 
@@ -131,8 +131,11 @@ değildir.
    bulunduğu dokuya değil, taşıdığı genetik değişime göre onaylanan ilaçlar
    oldu (tümör-agnostik onay). Hedef, moleküler belirteç temelli ilaç
    tasarımının ders kitabı örneğidir.
-2. **Veri açısından zengin.** ChEMBL'de 8.400'den fazla kesin IC50 ölçümü
-   bulunur — hem regresyon hem sınıflandırma için yeterli.
+2. **Veri açısından zengin.** ChEMBL'de bu hedef için **10.600'den fazla
+   IC50 kaydı** bulunur; bunların **8.414'ü** kesin (`=`) ilişkili ve `nM`
+   birimli ölçümdür — hem regresyon hem sınıflandırma için fazlasıyla yeterli.
+   Kalan ~2.200 kayıt sansürlüdür (`>`, `<`); bunların neden regresyona
+   katılmadığı Oturum 1'de tartışılmaktadır.
 3. **Direnç sorunu gerçek.** Birinci nesil inhibitörlere karşı gelişen direnç
    mutasyonları (G595R, G667C) ikinci nesil ilaçların geliştirilmesini
    gerektirdi; aktiflik tahmininin neden sürekli yenilenen bir problem olduğunu
@@ -186,7 +189,7 @@ Oturum 4'te `ESIK`.
 
 | Dosya | İçerik |
 |---|---|
-| `ntrk1_ham_chembl.csv` | ChEMBL'den çekilen 8.414 ham IC50 kaydı |
+| `ntrk1_ham_chembl.csv` | ChEMBL'den çekilen 8.414 IC50 kaydı (kesin `=` ilişki, `nM`) |
 | `ntrk1_regresyon.csv` | `Smiles`, `pIC50` — regresyon veri seti |
 | `ntrk1_siniflandirma.csv` | `Smiles`, `pIC50`, `Aktiflik` — sınıflandırma veri seti |
 | `tarama_kutuphanesi.csv` | 3.311 onaylanmış küçük molekül (sanal tarama kütüphanesi) |

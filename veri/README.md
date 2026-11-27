@@ -9,6 +9,7 @@ betiğiyle ChEMBL web servisinden üretilmiştir.
 | **Üretim tarihi** | 11 Kasım 2026 |
 | **Hedef** | NTRK1 / TrkA — ChEMBL `CHEMBL2815`, UniProt `P04629` |
 | **Aktivite tipi** | IC50 (yalnızca kesin `=` ilişki, `nM` birimi) |
+| **Hedefteki IC50 kaydı** | ChEMBL'de toplam 10.647; kesin ve nM olan 8.414 |
 | **Hedef değişken** | `pIC50 = −log₁₀(IC50 [M])` |
 | **Sınıflandırma eşiği** | `pIC50 ≥ 7.5` (IC50 ≤ 32 nM) |
 
@@ -18,7 +19,7 @@ betiğiyle ChEMBL web servisinden üretilmiştir.
 
 | Dosya | Satır | İçerik |
 |---|---|---|
-| `ntrk1_ham_chembl.csv` | 8.414 | ChEMBL'den çekilen ham IC50 kayıtları, hiç işlenmemiş |
+| `ntrk1_ham_chembl.csv` | 8.414 | ChEMBL'den çekilen IC50 kayıtları, hiç işlenmemiş (kesin `=` ilişki, `nM`) |
 | `ntrk1_regresyon.csv` | 4.599 | `Smiles`, `pIC50` — Oturum 3'ün girdisi |
 | `ntrk1_siniflandirma.csv` | 4.599 | `Smiles`, `pIC50`, `Aktiflik` — Oturum 4'ün girdisi |
 | `tarama_kutuphanesi.csv` | 3.311 | Onaylanmış küçük moleküller — Oturum 6'nın sanal tarama kütüphanesi |
