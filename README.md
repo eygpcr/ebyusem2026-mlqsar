@@ -154,47 +154,22 @@ nedenle onkoloji dışında analjezik geliştirme çalışmalarının da hedefid
 
 Bütün veri dosyaları [`veri/`](veri/) klasöründedir ve
 [`araclar/veri_uret.py`](araclar/veri_uret.py) betiğiyle ChEMBL'den
-üretilmiştir. Not defterleri bu dosyaları doğrudan GitHub'dan okuyabilir.
+üretilmiştir. Not defterleri bu dosyaları doğrudan GitHub'dan okur; ayrıca
+indirmeniz gerekmez.
 
-Veri setinin ayrıntılı künyesi, küratörlük adımları ve istatistikleri
+### Hangi dosya ne için?
+
+| Dosya | Ne işe yarar? |
+|---|---|
+| `ntrk1_regresyon.csv` | **Oturum 3'ün girdisi.** Her satır bir molekül: SMILES yapısı ve ölçülmüş `pIC50` değeri. Regresyon modelleri aktiviteyi sayı olarak tahmin etmeyi bu dosyadan öğrenir. |
+| `ntrk1_siniflandirma.csv` | **Oturum 4'ün girdisi.** Aynı moleküller, ek olarak `Aktiflik` etiketi (0/1). Sınıflandırma modelleri "aktif mi değil mi" sorusunu bu dosyadan öğrenir. |
+| `tarama_kutuphanesi.csv` | **Oturum 6'nın girdisi.** Onaylanmış ilaçlardan oluşan sanal tarama kütüphanesi. Eğitilmiş modeller bu daha önce denenmemiş moleküller üzerinde tahmin üretir ve aday listesi buradan çıkar. |
+| `ntrk1_ham_chembl.csv` | **Oturum 1'in başlangıç noktası.** ChEMBL'den geldiği gibi, hiç işlenmemiş kayıtlar. Temizlik hattı bu dosya üzerinde kurulur; canlı ChEMBL sorgusu çalışmazsa yedek olarak da kullanılır. |
+| `ntrk1_aktivite_tipleri.csv` | Hedefte hangi ölçüm tipinin (IC50, Ki, Kd, EC50) kaç kaydı olduğunu gösterir. Oturum 1'deki "neden IC50 ile çalışıyoruz?" kararının dayanağıdır. |
+| `ntrk1_veri_kunyesi.json` | Veri setinin kimlik kartı: üretim tarihi, uygulanan filtreler, küratörlük adımları ve sınıf dengesi. Çalışmanın tekrar üretilebilmesi için saklanır. |
+
+Dosyaların ayrıntılı künyesi ve kolon şeması
 [`veri/README.md`](veri/README.md) dosyasındadır.
-
-### Künye
-
-| | |
-|---|---|
-| **Kaynak** | ChEMBL web servisi (REST API) |
-| **Üretim tarihi** | 11 Kasım 2026 |
-| **Aktivite tipi** | IC50, yalnızca kesin (`=`) ilişki ve `nM` birimi |
-| **Hedef değişken** | `pIC50 = −log₁₀(IC50 [M])` |
-| **Sınıflandırma eşiği** | `pIC50 ≥ 7.5` (IC50 ≤ 32 nM) |
-
-### Eşik seçimi
-
-Sınıflandırma için moleküller **aktif** ve **inaktif** diye ikiye ayrılır. Bu
-kursta eşik **`pIC50 ≥ 7.5`** (IC50 ≤ 32 nM) olarak seçilmiştir; seçim iki
-ölçütü birlikte karşılar:
-
-- **Farmakolojik olarak savunulabilir.** 32 nM, kinaz inhibitörü geliştirmede
-  optimize edilmiş bileşik aralığıdır.
-- **Sınıfları neredeyse tam ortadan böler.** Böylece Oturum 4'teki metrikler
-  sınıf dengesizliğinden gölgelenmeden okunabilir.
-
-Eşik seçiminin neden bilimsel bir karar olduğu ve farklı eşiklerin veri setini
-nasıl böldüğü **Oturum 1 ve Oturum 4'te** uygulamalı olarak tartışılmaktadır.
-Eşiği değiştirmek tek satırlık bir işlemdir: Oturum 1'de `AKTIFLIK_ESIGI`,
-Oturum 4'te `ESIK`.
-
-### Dosyalar
-
-| Dosya | İçerik |
-|---|---|
-| `ntrk1_ham_chembl.csv` | ChEMBL'den çekilen 8.414 IC50 kaydı (kesin `=` ilişki, `nM`) |
-| `ntrk1_regresyon.csv` | `Smiles`, `pIC50` — regresyon veri seti |
-| `ntrk1_siniflandirma.csv` | `Smiles`, `pIC50`, `Aktiflik` — sınıflandırma veri seti |
-| `tarama_kutuphanesi.csv` | 3.311 onaylanmış küçük molekül (sanal tarama kütüphanesi) |
-| `ntrk1_veri_kunyesi.json` | Üretim künyesi: tarih, filtreler, huni, sınıf dengesi |
-| `ntrk1_aktivite_tipleri.csv` | Hedefteki aktivite tiplerinin dağılımı |
 
 ---
 
