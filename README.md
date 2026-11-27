@@ -275,18 +275,48 @@ eğitim skoru yanıltıcıdır.
 
 ### Oturum 4 — sınıflandırma (eşik `pIC50 ≥ 7,5`)
 
-| Ölçüm | Değer |
-|---|---|
-| LazyPredict taraması (en iyi) | `RandomForestClassifier` |
-| Temel çizgi doğruluğu (çoğunluk sınıfı) | 0,54 |
-| Doğruluk | ≈ 0,82 |
-| Dengeli doğruluk | ≈ 0,80 |
-| ROC-AUC | ≈ 0,88 |
+**Temel çizgi** (çoğunluk sınıfını söyleyen model): doğruluk **0,539**.
+Modelin aşması gereken çizgi budur.
 
-Doğruluğun temel çizgiyi (%54) belirgin biçimde aşması ve dengeli doğruluğun
-0,50'nin çok üstünde olması, modelin gerçekten öğrendiğini gösterir. Sınıflar
-dengeli olduğu için bu kez doğruluk ile dengeli doğruluk birbirine yakın
-çıkar — dengesiz bir eşikte (ör. 6.0) aradaki fark açılır.
+**LazyPredict taraması** (doğrulama seti, dengeli doğruluk):
+
+| Model | Dengeli doğruluk | Doğruluk | ROC-AUC |
+|---|---|---|---|
+| `NuSVC` | 0,824 | 0,826 | 0,884 |
+| `RandomForestClassifier` | 0,821 | 0,823 | 0,900 |
+| `ExtraTreesClassifier` | 0,816 | 0,817 | 0,889 |
+| `XGBClassifier` | 0,814 | 0,814 | 0,892 |
+
+İlk dört model 0,01'in içinde — yani bu veride "kazanan aile" net değil.
+Bu yüzden not defterinin hangi modeli seçtiği çalıştırmaya göre değişebilir;
+önemli olan sıralamanın üst bandının benzer olması.
+
+**Optuna ile ayarlanmış model** (ağaç topluluğu, 20 deneme, 5 katlı CV):
+
+| Ölçüm | Çapraz doğrulama | Test |
+|---|---|---|
+| Doğruluk | 0,814 | **0,820** |
+| Dengeli doğruluk | 0,813 | **0,819** |
+| Kesinlik | 0,797 | 0,799 |
+| Duyarlılık | 0,801 | 0,814 |
+| F1 | 0,799 | 0,806 |
+| **MCC** | 0,627 | **0,638** |
+| **ROC-AUC** | 0,896 | **0,904** |
+| PR-AUC | 0,883 | 0,890 |
+
+Okunması gerekenler:
+
+- Doğruluk temel çizgiyi (0,539) belirgin biçimde aşıyor — model gerçekten
+  öğreniyor.
+- **Doğruluk ile dengeli doğruluk neredeyse aynı** (0,820 / 0,819). Bu,
+  eşiği dengeli seçmenin doğrudan sonucudur. Dengesiz bir eşikte (ör. 6.0,
+  %87 aktif) bu iki sayı belirgin biçimde ayrışır — Oturum 4'ün
+  alıştırmalarından biri tam olarak bunu gösterir.
+- **MCC 0,64** ve **ROC-AUC 0,90**: ikisi de sağlam. MCC karmaşıklık
+  matrisinin tamamını özetlediği için dengesiz veride en güvenilir tek
+  sayıdır; burada dengeli veriyle bile anlamlı bir referans sunar.
+- Çapraz doğrulama ile test sonuçlarının yakınlığı (0,814 / 0,820) modelin
+  kararlı olduğunu gösterir.
 
 ### Oturum 6 — sanal tarama doğrulaması
 
