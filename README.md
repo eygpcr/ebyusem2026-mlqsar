@@ -150,8 +150,11 @@ nedenle onkoloji dışında analjezik geliştirme çalışmalarının da hedefid
 ## Veri setleri
 
 Bütün veri dosyaları [`veri/`](veri/) klasöründedir ve
-[`araclar/veri_uret.py`](araclar/veri_uret.py) betiğiyle üretilmiştir.
-Not defterleri bu dosyaları doğrudan GitHub'dan okuyabilir.
+[`araclar/veri_uret.py`](araclar/veri_uret.py) betiğiyle ChEMBL'den
+üretilmiştir. Not defterleri bu dosyaları doğrudan GitHub'dan okuyabilir.
+
+Veri setinin ayrıntılı künyesi, küratörlük adımları ve istatistikleri
+[`veri/README.md`](veri/README.md) dosyasındadır.
 
 ### Künye
 
@@ -163,59 +166,21 @@ Not defterleri bu dosyaları doğrudan GitHub'dan okuyabilir.
 | **Hedef değişken** | `pIC50 = −log₁₀(IC50 [M])` |
 | **Sınıflandırma eşiği** | `pIC50 ≥ 7.5` (IC50 ≤ 32 nM) |
 
-### Veri küratörlüğü hunisi
+### Eşik seçimi
 
-| Adım | Kalan molekül |
-|---|---|
-| Ham ChEMBL kayıtları | 8.414 |
-| Molekül başına en potent ölçüm | 4.600 |
-| Kanonik SMILES'a göre benzersiz yapı | 4.600 |
-| Mantıksal aralık filtresi (pIC50 3–12) | **4.599** |
-
-> Son adımda elenen tek kayıt (CHEMBL3671380) IC50 = 9,8 × 10⁹ nM, yani
-> **9,8 molar** olarak girilmişti — deneysel olarak uygulanamaz bir derişim.
-> Gerçek veride karşılaşılan bir giriş hatası örneği olarak Oturum 1'de
-> tartışılmaktadır.
-
-**Doğrulama.** Hesapladığımız pIC50 değerleri, ChEMBL'in kendi
-`pchembl_value` alanıyla 8.404 kayıtta karşılaştırıldı; en büyük fark
-**0,0055** (yuvarlama kaynaklı). Birim ve logaritma mantığı doğrulanmıştır.
-
-### Özet istatistikler
-
-| | |
-|---|---|
-| **Molekül sayısı** | 4.599 |
-| **pIC50 aralığı** | 3,20 – 10,16 |
-| **pIC50 ortalama ± std** | 7,32 ± 1,12 |
-| **Benzersiz Murcko iskeleti** | 1.688 (%36,7 çeşitlilik) |
-| **Aktif / inaktif (eşik 7.5)** | 2.121 / 2.478 (%46,1 aktif) |
-
-### Sınıflandırma eşiği seçenekleri
-
-Eşik seçimi bilimsel bir karardır; Oturum 1 ve 4'te tartışılmaktadır.
-
-| Eşik (pIC50) | IC50 | Aktif | İnaktif | Aktif % |
-|---|---|---|---|---|
-| 6.0 | 1 µM | 4.019 | 580 | 87,4 |
-| 6.5 | 316 nM | 3.448 | 1.151 | 75,0 |
-| 7.0 | 100 nM | 2.899 | 1.700 | 63,0 |
-| **7.5** | **32 nM** | **2.121** | **2.478** | **46,1** |
-| 8.0 | 10 nM | 1.353 | 3.246 | 29,4 |
-
-Kursta **7.5** kullanılmaktadır ve bu seçim iki ölçütü birlikte karşılar:
+Sınıflandırma için moleküller **aktif** ve **inaktif** diye ikiye ayrılır. Bu
+kursta eşik **`pIC50 ≥ 7.5`** (IC50 ≤ 32 nM) olarak seçilmiştir; seçim iki
+ölçütü birlikte karşılar:
 
 - **Farmakolojik olarak savunulabilir.** 32 nM, kinaz inhibitörü geliştirmede
-  optimize edilmiş bileşik aralığıdır. (Daha yaygın olan 100 nM / `pIC50 = 7`
-  sınırı da meşrudur; bir adım daha seçici olanı tercih ettik.)
-- **Sınıfları neredeyse tam ortadan böler** (%46 / %54). Böylece Oturum 4'teki
-  metrikler sınıf dengesizliğinden gölgelenmeden okunabilir ve "her şeye
-  çoğunluk sınıfını söyle" diyen temel çizgi yalnızca %54'te kalır.
+  optimize edilmiş bileşik aralığıdır.
+- **Sınıfları neredeyse tam ortadan böler.** Böylece Oturum 4'teki metrikler
+  sınıf dengesizliğinden gölgelenmeden okunabilir.
 
+Eşik seçiminin neden bilimsel bir karar olduğu ve farklı eşiklerin veri setini
+nasıl böldüğü **Oturum 1 ve Oturum 4'te** uygulamalı olarak tartışılmaktadır.
 Eşiği değiştirmek tek satırlık bir işlemdir: Oturum 1'de `AKTIFLIK_ESIGI`,
-Oturum 4'te `ESIK`. Dengesizliğin metrikleri nasıl bozduğunu görmek için
-6.0 (%87 aktif) ile denemeniz önerilir — Oturum 4'ün alıştırmalarından biri
-tam olarak budur.
+Oturum 4'te `ESIK`.
 
 ### Dosyalar
 
@@ -227,142 +192,6 @@ tam olarak budur.
 | `tarama_kutuphanesi.csv` | 3.311 onaylanmış küçük molekül (sanal tarama kütüphanesi) |
 | `ntrk1_veri_kunyesi.json` | Üretim künyesi: tarih, filtreler, huni, sınıf dengesi |
 | `ntrk1_aktivite_tipleri.csv` | Hedefteki aktivite tiplerinin dağılımı |
-
----
-
-## Kurs hazırlığında ölçülen örnek sonuçlar
-
-Aşağıdaki değerler, bütün not defterleri uçtan uca çalıştırılarak elde
-edilmiştir. **Kesin sayılar** Optuna deneme sayısına, rastgele tohuma ve
-ChEMBL sürümüne göre değişir; buradaki amaç katılımcıların ne beklemesi
-gerektiğini göstermektir.
-
-### Oturum 3 — regresyon (`pIC50`, betimleyici temsili)
-
-| Ölçüm | Değer |
-|---|---|
-| LazyPredict taraması (en iyi, doğrulama) | `HistGradientBoostingRegressor`, R² ≈ 0,62 |
-| Eğitim R² (yeniden uyum) | ≈ 0,93 |
-| **Çapraz doğrulama Q² (5 kat)** | **≈ 0,61** |
-| **Test R² (tutulan set)** | **≈ 0,69** |
-| Test RMSE | ≈ 0,65 `pIC50` birimi |
-| Test MAE | ≈ 0,47 |
-
-RMSE ≈ 0,65 demek, tipik tahminlerin aktivitede yaklaşık **4,5 kat** içinde
-isabet ettiği anlamına gelir — ilaç keşfinde kullanışlı bir doğruluktur.
-Karşılaştırma noktası olarak hedefin standart sapması 1,12'dir.
-
-### Üç temsilin karşılaştırması
-
-| Temsil | En iyi doğrulama R² |
-|---|---|
-| RDKit betimleyiciler (163 özellik) | ≈ 0,62 |
-| MACCS anahtarları (167 bit) | ≈ 0,57 |
-
-Yorumlanabilir fizikokimyasal betimleyicilerin, aynı boyuttaki yapısal
-anahtarlardan daha iyi sonuç vermesi bu veri setinin öğretici bir bulgusudur.
-
-### Doğrulama testleri — kursun asıl vurgusu
-
-| Test | Sonuç | Yorum |
-|---|---|---|
-| **y-randomizasyon** (10 tekrar) | Gerçek CV R² ≈ 0,61 · karıştırılmış en iyi ≈ **−0,16** | Uçurum ≈ 0,77. Model gerçek bir yapı–aktivite ilişkisi öğrenmiş. |
-| **İskelet bazlı bölünme** | Test R² 0,69 → **0,49** | Rastgele bölünme performansı ≈ 0,20 R² **fazla** gösteriyor. |
-| **Eğitim − CV farkı** | 0,93 − 0,61 = **0,32** | Belirgin aşırı öğrenme; not defteri bunu uyarı olarak bildirir. |
-
-Son iki satır kursun en önemli iki dersidir: rastgele bölünme iyimserdir ve
-eğitim skoru yanıltıcıdır.
-
-### Oturum 4 — sınıflandırma (eşik `pIC50 ≥ 7,5`)
-
-**Temel çizgi** (çoğunluk sınıfını söyleyen model): doğruluk **0,539**.
-Modelin aşması gereken çizgi budur.
-
-**LazyPredict taraması** (doğrulama seti, dengeli doğruluk):
-
-| Model | Dengeli doğruluk | Doğruluk | ROC-AUC |
-|---|---|---|---|
-| `NuSVC` | 0,824 | 0,826 | 0,884 |
-| `RandomForestClassifier` | 0,821 | 0,823 | 0,900 |
-| `ExtraTreesClassifier` | 0,816 | 0,817 | 0,889 |
-| `XGBClassifier` | 0,814 | 0,814 | 0,892 |
-
-İlk dört model 0,01'in içinde — yani bu veride "kazanan aile" net değil.
-Bu yüzden not defterinin hangi modeli seçtiği çalıştırmaya göre değişebilir;
-önemli olan sıralamanın üst bandının benzer olması.
-
-**Optuna ile ayarlanmış model** (ağaç topluluğu, 20 deneme, 5 katlı CV):
-
-| Ölçüm | Çapraz doğrulama | Test |
-|---|---|---|
-| Doğruluk | 0,814 | **0,820** |
-| Dengeli doğruluk | 0,813 | **0,819** |
-| Kesinlik | 0,797 | 0,799 |
-| Duyarlılık | 0,801 | 0,814 |
-| F1 | 0,799 | 0,806 |
-| **MCC** | 0,627 | **0,638** |
-| **ROC-AUC** | 0,896 | **0,904** |
-| PR-AUC | 0,883 | 0,890 |
-
-Okunması gerekenler:
-
-- Doğruluk temel çizgiyi (0,539) belirgin biçimde aşıyor — model gerçekten
-  öğreniyor.
-- **Doğruluk ile dengeli doğruluk neredeyse aynı** (0,820 / 0,819). Bu,
-  eşiği dengeli seçmenin doğrudan sonucudur. Dengesiz bir eşikte (ör. 6.0,
-  %87 aktif) bu iki sayı belirgin biçimde ayrışır — Oturum 4'ün
-  alıştırmalarından biri tam olarak bunu gösterir.
-- **MCC 0,64** ve **ROC-AUC 0,90**: ikisi de sağlam. MCC karmaşıklık
-  matrisinin tamamını özetlediği için dengesiz veride en güvenilir tek
-  sayıdır; burada dengeli veriyle bile anlamlı bir referans sunar.
-- Çapraz doğrulama ile test sonuçlarının yakınlığı (0,814 / 0,820) modelin
-  kararlı olduğunu gösterir.
-
-### Oturum 6 — sanal tarama doğrulaması
-
-Onaylanmış ilaç kütüphanesi (2.999 küçük molekül) tarandığında, **gerçek NTRK
-inhibitörleri listenin en üstüne çıkar**:
-
-| İlaç | Sıralama (2.999 molekül içinde) | Tahmin `pIC50` |
-|---|---|---|
-| **Repotrektinib** | **1.** | 9,40 |
-| **Entrektinib** | **2.** | 9,07 |
-| **Larotrektinib** | **5.** | 8,45 |
-| Krizotinib | 8. | 8,19 |
-| Kabozantinib | 343. | 6,98 |
-
-İlk dördü, bu hedef için geliştirilmiş ya da ona etki ettiği bilinen
-inhibitörlerdir — ve model hepsini ilk sekiz sıraya yerleştirmiştir. Bu,
-oturumun **zenginleştirme (enrichment)** doğrulamasıdır.
-
-> **Dürüstlük notu.** Bu moleküller eğitim setinde de bulunur (ChEMBL'de bu
-> hedefe karşı ölçülmüşlerdir), dolayısıyla yüksek tahmin almaları kısmen
-> ezberdir. Not defteri bunu `Egitimde_var` kolonuyla açıkça işaretler ve aday
-> listesinden çıkarır. Yine de doğru sağlık kontrolü budur: model bilinen
-> aktifleri üste taşıyamıyorsa, bilinmeyenler için ürettiği sıralamaya hiç
-> güvenilemez.
-
-### Uygulanabilirlik alanı — ölçülen davranış
-
-| Ölçüt | Sonuç |
-|---|---|
-| Test setinin AD içinde kalan oranı | %82,9 |
-| Kaldıraç dilimlerine göre RMSE | 0,50 (en yakın) → 0,78 (en uzak), **+%56** |
-| Tanimoto dilimlerine göre RMSE | 0,54 (en benzer) → 0,90 (en benzemez) |
-| Tanimoto ile \|hata\| korelasyonu | r = −0,32 |
-
-İki ölçüt de doğru yönde çalışır; **Tanimoto benzerliği kaldıraçtan daha güçlü
-bir sinyal verir** (r = −0,32'ye karşı r = 0,09). Oturum 5 bu karşılaştırmayı
-veriyle yapar ve neden böyle olduğunu tartışır.
-
-Onaylanmış ilaç kütüphanesinin **Tanimoto medyanı yalnızca 0,22**'dir: bu
-kütüphane modelin eğitildiği kimyasal uzaydan belirgin biçimde uzaktır. Oturum
-6 bunu açıkça gösterir ve tahminlerin neden temkinli yorumlanması gerektiğini
-somutlaştırır.
-
-> **Not.** Bu değerler bir makale sonucu değil, bir **ders alıştırmasının**
-> çıktısıdır. Kursun amacı yüksek skor elde etmek değil, bir skorun ne zaman
-> güvenilir olduğunu anlamaktır.
 
 ---
 
