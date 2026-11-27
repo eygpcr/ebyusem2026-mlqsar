@@ -5,12 +5,12 @@ Bilgisayarınıza yazılım kurmanız gerekmez.
 
 | Oturum | Dosya | Konu | Colab |
 |---|---|---|---|
-| 1 | `01_veri_hazirlama.ipynb` | ChEMBL'den veri çekme, temizlik, pIC50 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/01_veri_hazirlama.ipynb) |
+| 1 | `01_veri_hazirlama.ipynb` | ChEMBL'den veri çekme, adım adım temizlik, pIC50, eşik seçimi | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/01_veri_hazirlama.ipynb) |
 | 2 | `02_ozellik_uretimi.ipynb` | Betimleyiciler, ECFP4, MACCS | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/02_ozellik_uretimi.ipynb) |
 | 3 | `03_regresyon_modelleri.ipynb` | LazyPredict, Optuna, CV, y-randomizasyon | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/03_regresyon_modelleri.ipynb) |
 | 4 | `04_siniflandirma_modelleri.ipynb` | Dengesizlik, ROC/PR, MCC, karar eşiği | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/04_siniflandirma_modelleri.ipynb) |
 | 5 | `05_karsilastirma_shap_ad.ipynb` | Model karşılaştırma, SHAP, Williams grafiği | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/05_karsilastirma_shap_ad.ipynb) |
-| 6 | `06_tahmin_ve_sdf.ipynb` | Sanal tarama, uygulanabilirlik alanı, SDF çıktısı | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/06_tahmin_ve_sdf.ipynb) |
+| 6 | `06_tahmin_ve_sdf.ipynb` | Sanal tarama (faz 1–4 ilaçları), uygulanabilirlik alanı, SDF çıktısı | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/06_tahmin_ve_sdf.ipynb) |
 
 ---
 
@@ -21,7 +21,7 @@ Bilgisayarınıza yazılım kurmanız gerekmez.
 Her oturumun çıktısı bir sonrakinin girdisidir:
 
 ```
-01 → ntrk1_regresyon.csv, ntrk1_siniflandirma.csv
+01 → ntrk1_regresyon.csv, ntrk1_siniflandirma.csv, esik_secimi.json
       ↓
 02 → ntrk1_descriptors.csv, ntrk1_ecfp4.csv, ntrk1_maccs.csv
       ↓
@@ -34,6 +34,10 @@ Her oturumun çıktısı bir sonrakinin girdisidir:
 06 → aday listesi + SDF dosyaları
 ```
 
+**Sınıflandırma eşiği Oturum 1'de, dağılıma bakılarak seçilir.** Seçim
+`esik_secimi.json` dosyasına yazılır ve sonraki bütün oturumlar onu okur —
+eşiği değiştirmek isterseniz Oturum 1'in "Karar" hücresine dönmeniz yeterli.
+
 Bir oturumu kaçırırsanız, not defterleri depodaki **hazır veri
 dosyalarına** düşerek çalışmaya devam eder (Oturum 1 ve 2 için). Oturum 3–6
 ise önceki oturumun Drive çıktısına ihtiyaç duyar ve bulamazsa hangi
@@ -42,8 +46,21 @@ not defterini çalıştırmanız gerektiğini açıkça söyler.
 ### Çıktılar Google Drive'a kaydedilir
 
 Her not defterinin ikinci hücresi Drive'ı bağlar ve
-`Drive'ım/EBYUSEM2026_MLQSAR/` klasörünü oluşturur. **Bütün oturumlar bu aynı
-klasörü paylaşır** — `DRIVE_PROJE_KLASORU` ayarını değiştirmeyin.
+`Drive'ım/EBYUSEM2026_MLQSAR/` ana klasörünü oluşturur. **Her oturum kendi alt
+klasörüne yazar**, böylece dosyalar karışmaz:
+
+```
+EBYUSEM2026_MLQSAR/
+├── 01_veri/            ├── 04_siniflandirma/
+├── 02_ozellikler/      ├── 05_analiz/
+├── 03_regresyon/       └── 06_adaylar/   (+ sdf/)
+```
+
+Her alt klasörün içinde bir de `gorseller/` klasörü vardır; o oturumun
+grafikleri oraya kaydedilir.
+
+**Bütün oturumlar bu aynı ana klasörü paylaşır** — `DRIVE_PROJE_KLASORU`
+ayarını değiştirmeyin.
 
 Colab çalışma zamanı sonlanırsa `/content/` altındaki her şey silinir, ama
 Drive'daki çıktılar korunur.
@@ -64,12 +81,12 @@ değiştirip bütün defterleri sırayla çalıştırmanız yeterlidir — kod h
 
 | Not defteri | Yaklaşık süre | Notlar |
 |---|---|---|
-| 01 | 3–8 dk | Canlı ChEMBL indirmesi yavaş olabilir |
+| 01 | 3–8 dk | Canlı ChEMBL indirmesi yavaş olabilir; `depo_ham` ile ~1 dk |
 | 02 | 1–3 dk | Betimleyici hesabı ~1 dk |
 | 03 | 15–25 dk | En uzun oturum; `OPTUNA_DENEME` ile ayarlanabilir |
 | 04 | 10–20 dk | |
 | 05 | 5–10 dk | SHAP hesabı `SHAP_ORNEK` ile ayarlanabilir |
-| 06 | 5–12 dk | 3B koordinat üretimi en yavaş adım |
+| 06 | 8–15 dk | 12.000 molekül için betimleyici hesabı en yavaş adım |
 
 Süreler Colab'ın ücretsiz CPU çalışma zamanı içindir. Ders akışı sıkışırsa
 Oturum 3 ve 4'te `OPTUNA_DENEME = 10` ve `Y_RANDOM_TEKRAR = 5` yapmak toplam

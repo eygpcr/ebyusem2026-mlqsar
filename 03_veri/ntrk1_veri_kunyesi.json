@@ -3,13 +3,13 @@
   "hedef_adi": "High affinity nerve growth factor receptor (NTRK1 / TrkA)",
   "uniprot": "P04629",
   "aktivite_tipi": "IC50",
-  "siniflandirma_esigi": 7.5,
+  "siniflandirma_esigi": 7.37,
   "uretim_tarihi": "2026-11-11",
   "ham_kayit": 8414,
   "nihai_molekul": 4599,
-  "aktif": 2121,
-  "inaktif": 2478,
-  "aktif_yuzde": 46.1,
+  "aktif": 2301,
+  "inaktif": 2298,
+  "aktif_yuzde": 50.03,
   "pIC50_min": 3.2,
   "pIC50_max": 10.16,
   "pIC50_ortalama": 7.32,
@@ -95,7 +95,30 @@
     }
   ],
   "tarama_kutuphanesi": {
-    "molekul": 3311,
-    "egitim_setiyle_ortak": 14
-  }
+    "molekul": 12032,
+    "egitim_setiyle_ortak": 36,
+    "faz_dagilimi": {
+      "1": 950,
+      "2": 6658,
+      "3": 1113,
+      "4": 3311
+    },
+    "aciklama": "ChEMBL max_phase 1-4 kucuk molekuller (klinik asama ilaclari)"
+  },
+  "esik_secimi": {
+    "mod": "tek",
+    "esik": 7.37,
+    "bant": 0.0,
+    "alt_esik": 7.37,
+    "ust_esik": 7.37,
+    "hedef_kolon": "pIC50",
+    "cikarilan_bant_molekul": 0,
+    "regresyon_molekul": 4599,
+    "siniflandirma_molekul": 4599,
+    "aktif": 2301,
+    "inaktif": 2298,
+    "aktif_yuzde": 50.03
+  },
+  "esik_notu": "Varsayilan esik dagilimi iki esit parcaya bolen medyandir. Esik Oturum 1'de calisma aninda secilir; bu dosya varsayilan secimi kaydeder.",
+  "ham_ic50_kaydi": 10647
 }

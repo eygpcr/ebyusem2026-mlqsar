@@ -1,7 +1,11 @@
-Aktivite tipi,Kesin (=) ve nM kayit
-IC50,8414
-Ki,259
-Kd,163
-EC50,62
-Potency,0
-Inhibition,0
+Olcum tipi,Ham kayit,Kesin (=) + nM,Kullanilabilir %
+IC50,10647,8414,79.0
+kon,5892,0,0.0
+k_off,5892,0,0.0
+Inhibition,2017,0,0.0
+Ki,934,259,27.7
+Kd,449,163,36.3
+Residual Activity,316,0,0.0
+Activity,259,0,0.0
+% Control,108,0,0.0
+EC50,69,62,89.9

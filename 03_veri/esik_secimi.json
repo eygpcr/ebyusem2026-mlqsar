@@ -1,0 +1,14 @@
+{
+  "mod": "tek",
+  "esik": 7.37,
+  "bant": 0.0,
+  "alt_esik": 7.37,
+  "ust_esik": 7.37,
+  "hedef_kolon": "pIC50",
+  "cikarilan_bant_molekul": 0,
+  "regresyon_molekul": 4599,
+  "siniflandirma_molekul": 4599,
+  "aktif": 2301,
+  "inaktif": 2298,
+  "aktif_yuzde": 50.03
+}

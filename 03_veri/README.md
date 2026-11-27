@@ -11,7 +11,7 @@ betiğiyle ChEMBL web servisinden üretilmiştir.
 | **Aktivite tipi** | IC50 (yalnızca kesin `=` ilişki, `nM` birimi) |
 | **Hedefteki IC50 kaydı** | ChEMBL'de toplam 10.647; kesin ve nM olan 8.414 |
 | **Hedef değişken** | `pIC50 = −log₁₀(IC50 [M])` |
-| **Sınıflandırma eşiği** | `pIC50 ≥ 7.5` (IC50 ≤ 32 nM) |
+| **Sınıflandırma eşiği** | Kursta, Oturum 1'de dağılıma bakılarak seçilir. Buradaki dosyalar varsayılan seçimi taşır: dağılımın **medyanı** (`esik_secimi.json`). |
 
 ---
 
@@ -19,10 +19,11 @@ betiğiyle ChEMBL web servisinden üretilmiştir.
 
 | Dosya | Satır | İçerik |
 |---|---|---|
-| `ntrk1_ham_chembl.csv` | 8.414 | ChEMBL'den çekilen IC50 kayıtları, hiç işlenmemiş (kesin `=` ilişki, `nM`) |
+| `ntrk1_ham_ic50.csv` | 10.647 | ChEMBL'deki bütün IC50 kayıtları, hiç süzülmemiş. Oturum 1'in dokuz adımlı temizliği buradan başlar |
 | `ntrk1_regresyon.csv` | 4.599 | `Smiles`, `pIC50` — Oturum 3'ün girdisi |
 | `ntrk1_siniflandirma.csv` | 4.599 | `Smiles`, `pIC50`, `Aktiflik` — Oturum 4'ün girdisi |
-| `tarama_kutuphanesi.csv` | 3.311 | Onaylanmış küçük moleküller — Oturum 6'nın sanal tarama kütüphanesi |
+| `tarama_kutuphanesi.csv` | 12.032 | Klinik aşama (faz 1–4) küçük molekülleri — Oturum 6'nın sanal tarama kütüphanesi |
+| `esik_secimi.json` | — | Varsayılan sınıflandırma eşiği kararı; Oturum 2, 4, 5 ve 6 bunu okur |
 | `ntrk1_aktivite_tipleri.csv` | 6 | Hedefteki aktivite tiplerinin dağılımı |
 | `ntrk1_veri_kunyesi.json` | — | Üretim künyesi: tarih, filtreler, küratörlük adımları, sınıf dengesi |
 | [`chembl_disa_aktarim/`](chembl_disa_aktarim/) | 10.647 + 26.746 | ChEMBL web arayüzünden indirilmiş ham dışa aktarımlar (zip'li). ChEMBL erişilemezse Oturum 1 bu dosyalardan çalışır. |
@@ -35,9 +36,20 @@ Aynı bilgiler `ntrk1_veri_kunyesi.json` dosyasında da kayıtlıdır.
 
 ## Tarama kütüphanesi
 
-`tarama_kutuphanesi.csv`, ChEMBL'de `max_phase = 4` olan (yani **onaylanmış**)
-küçük moleküllerden oluşur. Oturum 6'da bir **ilaç yeniden konumlandırma**
-(drug repurposing) alıştırması için kullanılır.
+`tarama_kutuphanesi.csv`, ChEMBL'de **klinik aşamaya gelmiş** (`max_phase`
+1, 2, 3 veya 4) küçük moleküllerden oluşur. Oturum 6'da bir **ilaç yeniden
+konumlandırma** (drug repurposing) alıştırması için kullanılır.
+
+| Faz | Molekül | Anlamı |
+|---|---|---|
+| 1 | 950 | İnsanda ilk deneme |
+| 2 | 6.658 | Küçük hasta grubunda etkinlik |
+| 3 | 1.113 | Geniş ölçekli doğrulama |
+| **4** | **3.311** | **Onaylanmış ilaç** |
+
+Yalnızca onaylı ilaçlarla sınırlı kalmamamızın nedeni: faz 4 havuzu kinaz
+inhibitörü bakımından fakirdir, faz 1–3 ise zengindir — tam da modelimizin
+tanıdığı kimyasal uzay.
 
 | Kolon | İçerik |
 |---|---|
@@ -56,14 +68,14 @@ küçük moleküllerden oluşur. Oturum 6'da bir **ilaç yeniden konumlandırma*
 
 ```bash
 cd araclar
-python veri_uret.py --cikti ../03_veri --esik 7.5
+python veri_uret.py --cikti ../03_veri
 ```
 
 İndirilmiş ham dosyayı yeniden kullanarak yalnızca temizlik hattını
 tekrarlamak için:
 
 ```bash
-python veri_uret.py --cikti ../03_veri --esik 7.5 --ham-kullan
+python veri_uret.py --cikti ../03_veri --ham-kullan
 ```
 
 > ChEMBL sürekli güncellenir; yeniden ürettiğinizde sayılar bu belgedeki

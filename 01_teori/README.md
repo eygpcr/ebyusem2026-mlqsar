@@ -216,8 +216,8 @@ Temsil seçimi, QSAR'da model seçiminden daha belirleyici olabilir.
   döngüyü kapatmak
 
 > **Uygulamaya geçiş.** Oturum 5 SHAP ve Williams grafiğini kuracak; Oturum 6
-> bu sınırları kullanarak 3.311 onaylanmış ilacı tarayacak ve sonuçları SDF
-> dosyaları olarak üretecek.
+> bu sınırları kullanarak 12.000'in üzerinde klinik aşama ilacını (faz 1–4)
+> tarayacak ve sonuçları SDF dosyaları olarak üretecek.
 
 ---
 

@@ -141,7 +141,7 @@ değildir.
    gerektirdi; aktiflik tahmininin neden sürekli yenilenen bir problem olduğunu
    gösterir.
 4. **Sanal tarama için doğal bir sağlık kontrolü sunar.** Oturum 6'da
-   taradığımız onaylanmış ilaç kütüphanesinde larotrektinib ve entrektinib
+   taradığımız klinik ilaç kütüphanesinde larotrektinib ve entrektinib
    zaten bulunur; modelin onları üst sıralara taşıyıp taşımadığı doğrudan
    ölçülebilir.
 
@@ -165,11 +165,12 @@ alttakiler sonunda kullanılır.
 | Oturum | Dosya | Ne işe yarar? |
 |---|---|---|
 | **1** | `ntrk1_aktivite_tipleri.csv` | Hedefte hangi ölçüm tipinin (IC50, Ki, Kd, EC50) kaç kaydı olduğunu gösterir. Oturum 1'deki **"neden IC50 ile çalışıyoruz?"** kararının dayanağıdır. |
-| **1** | `ntrk1_ham_chembl.csv` | **Temizlik hattının başlangıç noktası.** ChEMBL'den geldiği gibi, hiç işlenmemiş kayıtlar. Oturum 1 bu dosyayı temiz bir veri setine dönüştürür. |
+| **1** | `ntrk1_ham_ic50.csv` | **Temizlik hattının başlangıç noktası.** ChEMBL'den geldiği gibi, hiç süzülmemiş IC50 kayıtları. Oturum 1 bu kayıtları dokuz adımda temiz bir veri setine dönüştürür. |
 | **1** | [`chembl_disa_aktarim/`](03_veri/chembl_disa_aktarim/) | **ChEMBL çökerse sigortanız.** ChEMBL'in web arayüzünden indirilmiş ham dışa aktarımlar (zip'li, değiştirilmemiş). Oturum 1 bunları Drive'ınıza indirip ChEMBL'e hiç bağlanmadan bütün hattı çalıştırabilir ve **birebir aynı** veri setini üretir. |
 | **3** | `ntrk1_regresyon.csv` | **Oturum 3'ün girdisi.** Her satır bir molekül: SMILES yapısı ve ölçülmüş `pIC50` değeri. Regresyon modelleri aktiviteyi sayı olarak tahmin etmeyi bu dosyadan öğrenir. |
 | **4** | `ntrk1_siniflandirma.csv` | **Oturum 4'ün girdisi.** Aynı moleküller, ek olarak `Aktiflik` etiketi (0/1). Sınıflandırma modelleri "aktif mi değil mi" sorusunu bu dosyadan öğrenir. |
-| **6** | `tarama_kutuphanesi.csv` | **Oturum 6'nın girdisi.** Onaylanmış ilaçlardan oluşan sanal tarama kütüphanesi. Eğitilmiş modeller bu daha önce denenmemiş moleküller üzerinde tahmin üretir; aday listesi buradan çıkar. |
+| **4** | `esik_secimi.json` | Sınıflandırma eşiği kararı. Eşik **kursta, Oturum 1'de dağılıma bakılarak seçilir**; bu dosya varsayılan seçimi taşır ve sonraki bütün oturumlar onu okur. |
+| **6** | `tarama_kutuphanesi.csv` | **Oturum 6'nın girdisi.** Klinik aşamaya gelmiş (faz 1–4) küçük moleküllerden oluşan sanal tarama kütüphanesi. Eğitilmiş modeller bu moleküller üzerinde tahmin üretir; aday listesi buradan çıkar. |
 | — | `ntrk1_veri_kunyesi.json` | Veri setinin kimlik kartı: üretim tarihi, uygulanan filtreler, küratörlük adımları ve sınıf dengesi. Çalışmanın tekrar üretilebilmesi için saklanır. |
 
 > **Oturum 2** ve **Oturum 5** bu klasörden dosya okumaz: Oturum 2 kendi özellik
@@ -208,29 +209,33 @@ bilgisayarlarına yazılım kurmaları gerekmez; güncel bir tarayıcı yeterlid
 Colab çalışma zamanı sonlandığında üretilen dosyalar silinir. Bu nedenle bütün
 not defterleri çıktıları katılımcının kendi Google Drive hesabına kaydeder:
 
+**Her oturum kendi alt klasörüne yazar**, böylece dosyalar karışmaz:
+
 ```
 Drive'ım/
 └── EBYUSEM2026_MLQSAR/
-    ├── ntrk1_regresyon.csv                  Oturum 1
-    ├── ntrk1_siniflandirma.csv              Oturum 1
-    ├── ntrk1_descriptors.csv                Oturum 2
-    ├── ntrk1_ecfp4.csv                      Oturum 2
-    ├── ntrk1_maccs.csv                      Oturum 2
-    ├── ntrk1_en_iyi_regresyon_modeli.joblib Oturum 3
-    ├── ntrk1_en_iyi_siniflandirma_modeli.joblib  Oturum 4
-    ├── ntrk1_ad_parametreleri.json          Oturum 5
-    ├── ntrk1_secilen_adaylar.csv            Oturum 6
-    └── sdf_ciktilari/                       Oturum 6
-        ├── ntrk1_adaylar_top25.sdf          tek birleşik dosya
-        ├── ntrk1_adaylar_sdf.zip            hepsi bir arşivde
-        └── molekul_basina/                  molekül başına ayrı SDF
-            ├── 01_Larotrectinib.sdf
-            └── ...
+    ├── 01_veri/                 ntrk1_regresyon.csv, ntrk1_siniflandirma.csv,
+    │   └── gorseller/           esik_secimi.json, ham kayıtlar
+    ├── 02_ozellikler/           ntrk1_descriptors.csv, ntrk1_ecfp4.csv,
+    │   └── gorseller/           ntrk1_maccs.csv
+    ├── 03_regresyon/            en iyi model (.joblib), sonuçlar, bölünme
+    │   └── gorseller/
+    ├── 04_siniflandirma/        en iyi model (.joblib), sonuçlar
+    │   └── gorseller/
+    ├── 05_analiz/               SHAP tablosu, AD parametreleri
+    │   └── gorseller/
+    └── 06_adaylar/              aday listesi (CSV)
+        ├── gorseller/
+        └── sdf/
+            ├── ntrk1_adaylar_top25.sdf      tek birleşik dosya
+            ├── ntrk1_adaylar_sdf.zip        hepsi bir arşivde
+            └── molekul_basina/              molekül başına ayrı SDF
 ```
 
-Klasör, ilk not defterinin ikinci hücresi çalıştırıldığında otomatik
-oluşturulur. **Bütün oturumlar aynı klasörü paylaşır** — bir oturumun çıktısı
-bir sonrakinin girdisi olduğu için klasör adını değiştirmeyin.
+Klasörler, herhangi bir not defterinin ikinci hücresi çalıştırıldığında
+otomatik oluşturulur. **Bütün oturumlar aynı ana klasörü paylaşır** — bir
+oturumun çıktısı bir sonrakinin girdisi olduğu için klasör adını
+değiştirmeyin.
 
 ---
 

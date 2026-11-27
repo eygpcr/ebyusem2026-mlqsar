@@ -8,14 +8,14 @@ boylece katilimcilar iki yolu karsilastirabilir.
 
 Kullanim:
     python veri_uret.py --cikti ../03_veri
-    python veri_uret.py --cikti ../03_veri --esik 7.5
+    python veri_uret.py --cikti ../03_veri
 
 Uretilen dosyalar:
-    ntrk1_ham_chembl.csv       Ham IC50 kayitlari (ChEMBL'den geldigi gibi)
+    ntrk1_ham_ic50.csv         Ham IC50 kayitlari (ChEMBL'den geldigi gibi)
     ntrk1_regresyon.csv        Smiles, pIC50
     ntrk1_siniflandirma.csv    Smiles, pIC50, Aktiflik
     ntrk1_veri_kunyesi.json    Uretim tarihi, kayit sayilari, sinif dengesi
-    tarama_kutuphanesi.csv     Onayli ilaclar (sanal tarama kutuphanesi)
+    tarama_kutuphanesi.csv     Klinik asama ilaclari (faz 1-4, sanal tarama)
 """
 
 from __future__ import annotations
@@ -40,7 +40,9 @@ TARGET_CHEMBL_ID = "CHEMBL2815"   # NTRK1 / TrkA  (UniProt P04629)
 TARGET_ADI = "High affinity nerve growth factor receptor (NTRK1 / TrkA)"
 UNIPROT = "P04629"
 ACTIVITY_TYPE = "IC50"
-VARSAYILAN_ESIK = 7.5             # pIC50 >= 7.5  ->  Aktif   (IC50 <= 32 nM)
+# Esik: None -> dagilimin medyani kullanilir (en dengeli ayrim).
+# Notebook 01 de esigi calisma aninda, dagilima bakarak sectirir.
+VARSAYILAN_ESIK = None
 
 # Fiziksel olarak makul pIC50 araligi. Alt sinir 3.0 -> IC50 = 1 mM.
 # Bunun disindaki degerler veri giris hatasi kabul edilir.
@@ -114,48 +116,58 @@ def aktiviteleri_indir(target_id: str, tip: str) -> pd.DataFrame:
     return pd.DataFrame(kayitlar)
 
 
-def onayli_ilaclari_indir(en_fazla_sayfa: int = 12) -> pd.DataFrame:
-    """ChEMBL'de max_phase=4 (onayli) molekuller: sanal tarama kutuphanesi.
+def klinik_ilaclari_indir(fazlar=(4, 3, 2, 1),
+                          en_fazla_sayfa: int = 8) -> pd.DataFrame:
+    """ChEMBL'de klinik asamaya gelmis molekuller: sanal tarama kutuphanesi.
 
-    Derin sayfalama (buyuk offset) ChEMBL'de ozellikle kirilgandir. Bu yuzden
-    bir sayfa butun denemelerden sonra da alinamazsa islem IPTAL EDILMEZ:
-    o sayfa atlanir, kalanlar denenir ve sonunda kac sayfanin eksik kaldigi
-    bildirilir. Kismi bir kutuphane, hic kutuphane olmamasindan iyidir.
+    Faz 4 (onayli) ile birlikte faz 1-3 molekulleri de alinir. Gerekcesi:
+    ilac yeniden konumlandirma (drug repurposing) yalnizca onayli ilaclarla
+    sinirli degildir; klinik asamada guvenlik verisi uretilmis her molekul
+    adaydir. Ayrica faz 1-3, kinaz inhibitorleri bakimindan faz 4'ten cok
+    daha zengindir.
+
+    Her faz AYRI sorgulanir: boylece derin sayfalama (buyuk offset) gerekmez
+    ve ChEMBL'in kirilgan oldugu nokta bastan asilir. Bir sayfa butun
+    denemelerden sonra da alinamazsa islem IPTAL EDILMEZ: o sayfa atlanir ve
+    sonunda kac sayfanin eksik kaldigi bildirilir.
     """
     kayitlar, atlanan = [], []
     sayfa_boyu = 1000
-    for sayfa_no in range(en_fazla_sayfa):
-        offset = sayfa_no * sayfa_boyu
-        try:
-            veri = _get("molecule", {
-                "max_phase": 4, "limit": sayfa_boyu, "offset": offset,
-                "only": ("molecule_chembl_id,pref_name,molecule_structures,"
-                         "molecule_type"),
-            })
-        except RuntimeError:
-            atlanan.append(offset)
-            print(f"    offset {offset:>6}  ATLANDI (sunucu yanit vermedi)",
-                  flush=True)
-            continue
-
-        sayfa = veri.get("molecules", [])
-        for m in sayfa:
-            yapi = m.get("molecule_structures") or {}
-            smi = yapi.get("canonical_smiles")
-            if not smi:
+    for faz in fazlar:
+        print(f"  faz {faz}:", flush=True)
+        for sayfa_no in range(en_fazla_sayfa):
+            offset = sayfa_no * sayfa_boyu
+            try:
+                veri = _get("molecule", {
+                    "max_phase": faz, "limit": sayfa_boyu, "offset": offset,
+                    "only": ("molecule_chembl_id,pref_name,molecule_structures,"
+                             "molecule_type,max_phase"),
+                })
+            except RuntimeError:
+                atlanan.append((faz, offset))
+                print(f"    offset {offset:>6}  ATLANDI (sunucu yanit vermedi)",
+                      flush=True)
                 continue
-            kayitlar.append({
-                "molecule_chembl_id": m.get("molecule_chembl_id"),
-                "Isim": (m.get("pref_name") or "").title() or None,
-                "Molekul_tipi": m.get("molecule_type"),
-                "Smiles": smi,
-            })
-        print(f"    offset {offset:>6}  +{len(sayfa):<5}", flush=True)
-        if len(sayfa) < sayfa_boyu:
-            break
+
+            sayfa = veri.get("molecules", [])
+            for m in sayfa:
+                yapi = m.get("molecule_structures") or {}
+                smi = yapi.get("canonical_smiles")
+                if not smi:
+                    continue
+                kayitlar.append({
+                    "molecule_chembl_id": m.get("molecule_chembl_id"),
+                    "Isim": (m.get("pref_name") or "").title() or None,
+                    "Molekul_tipi": m.get("molecule_type"),
+                    "max_phase": faz,
+                    "Smiles": smi,
+                })
+            print(f"    offset {offset:>6}  +{len(sayfa):<5}", flush=True)
+            if len(sayfa) < sayfa_boyu:
+                break
 
     if atlanan:
-        print(f"    !! {len(atlanan)} sayfa alinamadi (offset: {atlanan})")
+        print(f"    !! {len(atlanan)} sayfa alinamadi: {atlanan}")
     return pd.DataFrame(kayitlar)
 
 
@@ -254,7 +266,7 @@ def main() -> None:
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--cikti", default="../03_veri", help="Cikti klasoru")
     ap.add_argument("--esik", type=float, default=VARSAYILAN_ESIK,
-                    help=f"Siniflandirma esigi (varsayilan {VARSAYILAN_ESIK})")
+                    help="Siniflandirma esigi (verilmezse dagilimin medyani)")
     ap.add_argument("--tarama-atla", action="store_true",
                     help="Onayli ilac kutuphanesini indirmeyi atla")
     ap.add_argument("--ham-kullan", action="store_true",
@@ -268,7 +280,10 @@ def main() -> None:
     print(f"Hedef           : {TARGET_CHEMBL_ID}  {TARGET_ADI}")
     print(f"UniProt         : {UNIPROT}")
     print(f"Aktivite tipi   : {ACTIVITY_TYPE}")
-    print(f"Siniflama esigi : {hedef_kolon} >= {args.esik}\n")
+    if args.esik is None:
+        print("Siniflama esigi : dagilimin medyani (temizlikten sonra belirlenir)\n")
+    else:
+        print(f"Siniflama esigi : {hedef_kolon} >= {args.esik}\n")
 
     print("Aktivite tipleri sayiliyor...")
     sayim = aktivite_tipi_sayilari(
@@ -276,7 +291,7 @@ def main() -> None:
     print(sayim.to_string(index=False), "\n")
     sayim.to_csv(cikti / f"{SLUG}_aktivite_tipleri.csv", index=False)
 
-    ham_yolu = cikti / f"{SLUG}_ham_chembl.csv"
+    ham_yolu = cikti / f"{SLUG}_ham_ic50.csv"
     if args.ham_kullan and ham_yolu.exists():
         ham = pd.read_csv(ham_yolu)
         print(f"Mevcut ham dosya kullaniliyor: {ham_yolu.name}  ({len(ham)} kayit)")
@@ -285,6 +300,13 @@ def main() -> None:
         ham = aktiviteleri_indir(TARGET_CHEMBL_ID, ACTIVITY_TYPE)
         print(f"  indirilen ham kayit: {len(ham)}")
         ham.to_csv(ham_yolu, index=False)
+
+    # Esik verilmediyse once temizligi gecici bir esikle calistirip medyani
+    # buluyor, sonra gercek esikle yeniden etiketliyoruz.
+    if args.esik is None:
+        gecici, _ = temizle(ham, ACTIVITY_TYPE, 7.0)
+        args.esik = round(float(gecici[hedef_kolon].median()), 2)
+        print(f"Dagilimin medyani -> esik = {args.esik}\n")
 
     df, huni = temizle(ham, ACTIVITY_TYPE, args.esik)
     print("\nTemizlik hunisi:")
@@ -304,6 +326,25 @@ def main() -> None:
     denge = denge_tablosu(df, hedef_kolon)
     print("\nSiniflandirma esigi secenekleri:")
     print(denge.to_string(index=False))
+
+    # Notebook 01-06'nin okudugu esik karari dosyasi
+    n_aktif = int(df["Aktiflik"].sum())
+    esik_secimi = {
+        "mod": "tek",
+        "esik": float(args.esik),
+        "bant": 0.0,
+        "alt_esik": float(args.esik),
+        "ust_esik": float(args.esik),
+        "hedef_kolon": hedef_kolon,
+        "cikarilan_bant_molekul": 0,
+        "regresyon_molekul": int(len(df)),
+        "siniflandirma_molekul": int(len(df)),
+        "aktif": n_aktif,
+        "inaktif": int(len(df)) - n_aktif,
+        "aktif_yuzde": round(100 * n_aktif / len(df), 2),
+    }
+    (cikti / "esik_secimi.json").write_text(
+        json.dumps(esik_secimi, ensure_ascii=False, indent=2), encoding="utf-8")
 
     df[["Smiles", hedef_kolon]].to_csv(cikti / f"{SLUG}_regresyon.csv", index=False)
     df[["Smiles", hedef_kolon, "Aktiflik"]].to_csv(
@@ -333,9 +374,9 @@ def main() -> None:
     }
 
     if not args.tarama_atla:
-        print("\nOnayli ilac kutuphanesi indiriliyor (sanal tarama icin)...")
+        print("\nKlinik asama ilac kutuphanesi indiriliyor (faz 1-4)...")
         try:
-            lib = onayli_ilaclari_indir()
+            lib = klinik_ilaclari_indir()
         except Exception as exc:
             print(f"  !! Kutuphane indirilemedi: {exc}")
             print("     Ana veri setleri yazildi; kutuphane olmadan devam.")
@@ -354,6 +395,8 @@ def main() -> None:
         kunye["tarama_kutuphanesi"] = {
             "molekul": len(lib),
             "egitim_setiyle_ortak": int(lib["Egitimde_var"].sum()),
+            "faz_dagilimi": {str(k): int(v) for k, v
+                             in lib["max_phase"].value_counts().sort_index().items()},
         }
         print(f"  kutuphane molekul sayisi : {len(lib)}")
         print(f"  egitim setiyle ortak     : {int(lib['Egitimde_var'].sum())}")

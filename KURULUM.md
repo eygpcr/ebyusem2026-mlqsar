@@ -113,15 +113,19 @@ bir ek adım gerekir.
 1. Paylaşılan Drive klasöründeki not defterini açın: sağ tık →
    *Birlikte aç* → *Google Colaboratory*. Ardından
    *Dosya → Drive'a kopya kaydet* ile kendi kopyanızı alın.
-2. **Veri dosyalarını proje klasörüne kopyalayın.** Not defterleri çıktıları
-   `Drive'ım/EBYUSEM2026_MLQSAR/` klasöründe arar. Paylaşılan `03_veri/`
-   klasöründeki şu dosyaları oraya kopyalayın:
+2. **Veri dosyalarını proje klasörüne kopyalayın.** Not defterleri
+   `Drive'ım/EBYUSEM2026_MLQSAR/` altında her oturum için ayrı bir alt klasör
+   oluşturur. Paylaşılan `03_veri/` klasöründeki şu dosyaları ilgili alt
+   klasöre kopyalayın:
 
-   - `ntrk1_siniflandirma.csv`
-   - `ntrk1_regresyon.csv`
-   - `tarama_kutuphanesi.csv`
+   | Dosya | Hedef klasör |
+   |---|---|
+   | `ntrk1_regresyon.csv` | `EBYUSEM2026_MLQSAR/01_veri/` |
+   | `ntrk1_siniflandirma.csv` | `EBYUSEM2026_MLQSAR/01_veri/` |
+   | `esik_secimi.json` | `EBYUSEM2026_MLQSAR/01_veri/` |
+   | `tarama_kutuphanesi.csv` | `EBYUSEM2026_MLQSAR/06_adaylar/` |
 
-   (Klasör, herhangi bir not defterinin ikinci hücresi çalıştırıldığında
+   (Klasörler, herhangi bir not defterinin ikinci hücresi çalıştırıldığında
    otomatik oluşur.)
 
 Bu kopyalama neden gerekli? Not defterleri girdilerini **önce Drive proje

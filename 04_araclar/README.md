@@ -15,15 +15,15 @@ mantığını** uygular; böylece katılımcılar iki yolu karşılaştırabilir
 ### Kullanım
 
 ```bash
-python veri_uret.py --cikti ../03_veri --esik 7.5
+python veri_uret.py --cikti ../03_veri
 ```
 
 | Seçenek | Açıklama |
 |---|---|
 | `--cikti` | Çıktı klasörü (varsayılan `../03_veri`) |
-| `--esik` | Sınıflandırma eşiği, pIC50 (varsayılan 7.5) |
+| `--esik` | Sınıflandırma eşiği, pIC50. Verilmezse dağılımın **medyanı** kullanılır |
 | `--ham-kullan` | Diskteki ham CSV'yi kullan, yeniden indirme |
-| `--tarama-atla` | Onaylanmış ilaç kütüphanesini indirmeyi atla |
+| `--tarama-atla` | Klinik ilaç kütüphanesini (faz 1–4) indirmeyi atla |
 
 ### Gereksinimler
 
@@ -38,7 +38,7 @@ Betiğin başındaki sabitleri değiştirmek yeterlidir:
 ```python
 TARGET_CHEMBL_ID = "CHEMBL2815"   # NTRK1
 ACTIVITY_TYPE    = "IC50"
-VARSAYILAN_ESIK  = 7.5
+VARSAYILAN_ESIK  = None   # None -> medyan
 MANTIK_ARALIGI   = (3.0, 12.0)
 SLUG             = "ntrk1"        # dosya adlarında kullanılır
 ```
