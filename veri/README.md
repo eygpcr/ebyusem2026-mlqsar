@@ -3,9 +3,14 @@
 Bu klasördeki bütün dosyalar [`../araclar/veri_uret.py`](../araclar/veri_uret.py)
 betiğiyle ChEMBL web servisinden üretilmiştir.
 
-**Üretim tarihi:** 11 Kasım 2026
-**Hedef:** NTRK1 / TrkA — ChEMBL `CHEMBL2815`, UniProt `P04629`
-**Aktivite tipi:** IC50 (yalnızca kesin `=` ilişki, `nM` birimi)
+| | |
+|---|---|
+| **Kaynak** | ChEMBL web servisi (REST API) |
+| **Üretim tarihi** | 11 Kasım 2026 |
+| **Hedef** | NTRK1 / TrkA — ChEMBL `CHEMBL2815`, UniProt `P04629` |
+| **Aktivite tipi** | IC50 (yalnızca kesin `=` ilişki, `nM` birimi) |
+| **Hedef değişken** | `pIC50 = −log₁₀(IC50 [M])` |
+| **Sınıflandırma eşiği** | `pIC50 ≥ 7.5` (IC50 ≤ 32 nM) |
 
 ---
 
@@ -18,55 +23,11 @@ betiğiyle ChEMBL web servisinden üretilmiştir.
 | `ntrk1_siniflandirma.csv` | 4.599 | `Smiles`, `pIC50`, `Aktiflik` — Oturum 4'ün girdisi |
 | `tarama_kutuphanesi.csv` | 3.311 | Onaylanmış küçük moleküller — Oturum 6'nın sanal tarama kütüphanesi |
 | `ntrk1_aktivite_tipleri.csv` | 6 | Hedefteki aktivite tiplerinin dağılımı |
-| `ntrk1_veri_kunyesi.json` | — | Üretim künyesi: tarih, filtreler, huni, sınıf dengesi |
+| `ntrk1_veri_kunyesi.json` | — | Üretim künyesi: tarih, filtreler, küratörlük adımları, sınıf dengesi |
 
----
-
-## Veri küratörlüğü hunisi
-
-| Adım | Kalan molekül |
-|---|---|
-| Ham ChEMBL kayıtları | 8.414 |
-| Kimlik + değer + SMILES tam olanlar | 8.414 |
-| Sayısal ve pozitif değer | 8.414 |
-| Molekül başına en potent ölçüm | 4.600 |
-| Geçerli kanonik SMILES | 4.600 |
-| Kanonik yapıya göre benzersiz | 4.600 |
-| Mantıksal aralık filtresi (pIC50 3–12) | **4.599** |
-
-### Elenen tek kayıt
-
-`CHEMBL3671380` için IC50 = 9,8 × 10⁹ nM, yani **9,8 molar** olarak
-girilmişti. Bu derişim deneysel olarak uygulanamaz; açık bir veri giriş
-hatasıdır. Gerçek veride karşılaşılan kalite sorunu örneği olarak Oturum 1'de
-tartışılmaktadır.
-
----
-
-## Doğrulama
-
-Hesapladığımız `pIC50` değerleri, ChEMBL'in kendi `pchembl_value` alanıyla
-8.404 kayıtta karşılaştırıldı:
-
-| | |
-|---|---|
-| Ortalama mutlak fark | 0,0023 |
-| En büyük mutlak fark | 0,0055 |
-
-Fark yalnızca yuvarlamadan kaynaklanmaktadır (ChEMBL iki ondalık basamak
-saklar). Birim ve logaritma mantığı bağımsız bir kaynakla doğrulanmıştır.
-
----
-
-## Özet istatistikler
-
-| | |
-|---|---|
-| Molekül sayısı | 4.599 |
-| pIC50 aralığı | 3,20 – 10,16 |
-| pIC50 ortalama ± std | 7,32 ± 1,12 |
-| Benzersiz Murcko iskeleti | 1.688 (%36,7) |
-| Aktif / inaktif (eşik 7.5) | 2.121 / 2.478 (%46,1 aktif) |
+Veri setinin nasıl temizlendiği, hangi adımda kaç molekülün elendiği ve
+dağılımın nasıl göründüğü **Oturum 1'de** adım adım üretilip tartışılmaktadır.
+Aynı bilgiler `ntrk1_veri_kunyesi.json` dosyasında da kayıtlıdır.
 
 ---
 
@@ -82,13 +43,10 @@ küçük moleküllerden oluşur. Oturum 6'da bir **ilaç yeniden konumlandırma*
 | `Isim` | İlacın adı |
 | `Molekul_tipi` | `Small molecule` |
 | `Smiles` | Kanonik SMILES |
-| `Egitimde_var` | 1 ise bu molekül eğitim veri setinde de bulunuyor (14 molekül) |
+| `Egitimde_var` | 1 ise bu molekül eğitim veri setinde de bulunuyor |
 
-`Egitimde_var` kolonu **silinmez, işaretlenir**: bilinen aktiflerin yüksek
-tahmin alması modelin sağlık kontrolüdür.
-
-> **Not.** Kütüphane indirilirken ChEMBL servisinin kararsızlığı nedeniyle
-> son sayfa kısmen alınabilmiştir; bu, alıştırmanın amacını etkilemez.
+> **Not.** Kütüphane indirilirken ChEMBL servisinin kararsızlığı nedeniyle son
+> sayfa kısmen alınabilmiştir; bu, alıştırmanın amacını etkilemez.
 
 ---
 
