@@ -66,7 +66,7 @@ saklar). Birim ve logaritma mantığı bağımsız bir kaynakla doğrulanmışt�
 | pIC50 aralığı | 3,20 – 10,16 |
 | pIC50 ortalama ± std | 7,32 ± 1,12 |
 | Benzersiz Murcko iskeleti | 1.688 (%36,7) |
-| Aktif / inaktif (eşik 7.0) | 2.899 / 1.700 (%63,0 aktif) |
+| Aktif / inaktif (eşik 7.5) | 2.121 / 2.478 (%46,1 aktif) |
 
 ---
 
@@ -96,14 +96,14 @@ tahmin alması modelin sağlık kontrolüdür.
 
 ```bash
 cd araclar
-python veri_uret.py --cikti ../veri --esik 7.0
+python veri_uret.py --cikti ../veri --esik 7.5
 ```
 
 İndirilmiş ham dosyayı yeniden kullanarak yalnızca temizlik hattını
 tekrarlamak için:
 
 ```bash
-python veri_uret.py --cikti ../veri --esik 7.0 --ham-kullan
+python veri_uret.py --cikti ../veri --esik 7.5 --ham-kullan
 ```
 
 > ChEMBL sürekli güncellenir; yeniden ürettiğinizde sayılar bu belgedeki

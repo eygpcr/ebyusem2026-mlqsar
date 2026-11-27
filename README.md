@@ -161,7 +161,7 @@ Not defterleri bu dosyaları doğrudan GitHub'dan okuyabilir.
 | **Üretim tarihi** | 11 Kasım 2026 |
 | **Aktivite tipi** | IC50, yalnızca kesin (`=`) ilişki ve `nM` birimi |
 | **Hedef değişken** | `pIC50 = −log₁₀(IC50 [M])` |
-| **Sınıflandırma eşiği** | `pIC50 ≥ 7.0` (IC50 ≤ 100 nM) |
+| **Sınıflandırma eşiği** | `pIC50 ≥ 7.5` (IC50 ≤ 32 nM) |
 
 ### Veri küratörlüğü hunisi
 
@@ -189,7 +189,7 @@ Not defterleri bu dosyaları doğrudan GitHub'dan okuyabilir.
 | **pIC50 aralığı** | 3,20 – 10,16 |
 | **pIC50 ortalama ± std** | 7,32 ± 1,12 |
 | **Benzersiz Murcko iskeleti** | 1.688 (%36,7 çeşitlilik) |
-| **Aktif / inaktif (eşik 7.0)** | 2.899 / 1.700 (%63,0 aktif) |
+| **Aktif / inaktif (eşik 7.5)** | 2.121 / 2.478 (%46,1 aktif) |
 
 ### Sınıflandırma eşiği seçenekleri
 
@@ -199,13 +199,23 @@ Eşik seçimi bilimsel bir karardır; Oturum 1 ve 4'te tartışılmaktadır.
 |---|---|---|---|---|
 | 6.0 | 1 µM | 4.019 | 580 | 87,4 |
 | 6.5 | 316 nM | 3.448 | 1.151 | 75,0 |
-| **7.0** | **100 nM** | **2.899** | **1.700** | **63,0** |
-| 7.5 | 32 nM | 2.121 | 2.478 | 46,1 |
+| 7.0 | 100 nM | 2.899 | 1.700 | 63,0 |
+| **7.5** | **32 nM** | **2.121** | **2.478** | **46,1** |
 | 8.0 | 10 nM | 1.353 | 3.246 | 29,4 |
 
-Kursta **7.0** kullanılmaktadır: 100 nM, kinaz inhibitörü geliştirmede yaygın
-kabul gören bir "ilaç benzeri potens" sınırıdır. Daha dengeli bir sınıf
-dağılımı isteyenler Oturum 4'te eşiği 7.5 yapıp sonuçları karşılaştırabilir.
+Kursta **7.5** kullanılmaktadır ve bu seçim iki ölçütü birlikte karşılar:
+
+- **Farmakolojik olarak savunulabilir.** 32 nM, kinaz inhibitörü geliştirmede
+  optimize edilmiş bileşik aralığıdır. (Daha yaygın olan 100 nM / `pIC50 = 7`
+  sınırı da meşrudur; bir adım daha seçici olanı tercih ettik.)
+- **Sınıfları neredeyse tam ortadan böler** (%46 / %54). Böylece Oturum 4'teki
+  metrikler sınıf dengesizliğinden gölgelenmeden okunabilir ve "her şeye
+  çoğunluk sınıfını söyle" diyen temel çizgi yalnızca %54'te kalır.
+
+Eşiği değiştirmek tek satırlık bir işlemdir: Oturum 1'de `AKTIFLIK_ESIGI`,
+Oturum 4'te `ESIK`. Dengesizliğin metrikleri nasıl bozduğunu görmek için
+6.0 (%87 aktif) ile denemeniz önerilir — Oturum 4'ün alıştırmalarından biri
+tam olarak budur.
 
 ### Dosyalar
 
@@ -263,18 +273,20 @@ anahtarlardan daha iyi sonuç vermesi bu veri setinin öğretici bir bulgusudur.
 Son iki satır kursun en önemli iki dersidir: rastgele bölünme iyimserdir ve
 eğitim skoru yanıltıcıdır.
 
-### Oturum 4 — sınıflandırma (eşik `pIC50 ≥ 7,0`)
+### Oturum 4 — sınıflandırma (eşik `pIC50 ≥ 7,5`)
 
 | Ölçüm | Değer |
 |---|---|
 | LazyPredict taraması (en iyi) | `RandomForestClassifier` |
-| Temel çizgi doğruluğu (çoğunluk sınıfı) | 0,63 |
+| Temel çizgi doğruluğu (çoğunluk sınıfı) | 0,54 |
 | Doğruluk | ≈ 0,82 |
 | Dengeli doğruluk | ≈ 0,80 |
 | ROC-AUC | ≈ 0,88 |
 
-Doğruluğun temel çizgiyi (%63) belirgin biçimde aşması ve dengeli doğruluğun
-0,50'nin çok üstünde olması, modelin gerçekten öğrendiğini gösterir.
+Doğruluğun temel çizgiyi (%54) belirgin biçimde aşması ve dengeli doğruluğun
+0,50'nin çok üstünde olması, modelin gerçekten öğrendiğini gösterir. Sınıflar
+dengeli olduğu için bu kez doğruluk ile dengeli doğruluk birbirine yakın
+çıkar — dengesiz bir eşikte (ör. 6.0) aradaki fark açılır.
 
 ### Oturum 6 — sanal tarama doğrulaması
 

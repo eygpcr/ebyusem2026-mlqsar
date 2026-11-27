@@ -8,7 +8,7 @@ boylece katilimcilar iki yolu karsilastirabilir.
 
 Kullanim:
     python veri_uret.py --cikti ../veri
-    python veri_uret.py --cikti ../veri --esik 7.0
+    python veri_uret.py --cikti ../veri --esik 7.5
 
 Uretilen dosyalar:
     ntrk1_ham_chembl.csv       Ham IC50 kayitlari (ChEMBL'den geldigi gibi)
@@ -40,7 +40,7 @@ TARGET_CHEMBL_ID = "CHEMBL2815"   # NTRK1 / TrkA  (UniProt P04629)
 TARGET_ADI = "High affinity nerve growth factor receptor (NTRK1 / TrkA)"
 UNIPROT = "P04629"
 ACTIVITY_TYPE = "IC50"
-VARSAYILAN_ESIK = 7.0             # pIC50 >= 7.0  ->  Aktif   (IC50 <= 100 nM)
+VARSAYILAN_ESIK = 7.5             # pIC50 >= 7.5  ->  Aktif   (IC50 <= 32 nM)
 
 # Fiziksel olarak makul pIC50 araligi. Alt sinir 3.0 -> IC50 = 1 mM.
 # Bunun disindaki degerler veri giris hatasi kabul edilir.
