@@ -166,7 +166,7 @@ alttakiler sonunda kullanılır.
 |---|---|---|
 | **1** | `ntrk1_aktivite_tipleri.csv` | Hedefte hangi ölçüm tipinin (IC50, Ki, Kd, EC50) kaç kaydı olduğunu gösterir. Oturum 1'deki **"neden IC50 ile çalışıyoruz?"** kararının dayanağıdır. |
 | **1** | `ntrk1_ham_chembl.csv` | **Temizlik hattının başlangıç noktası.** ChEMBL'den geldiği gibi, hiç işlenmemiş kayıtlar. Oturum 1 bu dosyayı temiz bir veri setine dönüştürür. |
-| **1** | `chembl_disa_aktarim/` | **ChEMBL çökerse sigortanız.** ChEMBL'in web arayüzünden indirilmiş ham dışa aktarımlar (zip'li, değiştirilmemiş). Oturum 1 bunları Drive'ınıza indirip ChEMBL'e hiç bağlanmadan bütün hattı çalıştırabilir ve **birebir aynı** veri setini üretir. |
+| **1** | [`chembl_disa_aktarim/`](03_veri/chembl_disa_aktarim/) | **ChEMBL çökerse sigortanız.** ChEMBL'in web arayüzünden indirilmiş ham dışa aktarımlar (zip'li, değiştirilmemiş). Oturum 1 bunları Drive'ınıza indirip ChEMBL'e hiç bağlanmadan bütün hattı çalıştırabilir ve **birebir aynı** veri setini üretir. |
 | **3** | `ntrk1_regresyon.csv` | **Oturum 3'ün girdisi.** Her satır bir molekül: SMILES yapısı ve ölçülmüş `pIC50` değeri. Regresyon modelleri aktiviteyi sayı olarak tahmin etmeyi bu dosyadan öğrenir. |
 | **4** | `ntrk1_siniflandirma.csv` | **Oturum 4'ün girdisi.** Aynı moleküller, ek olarak `Aktiflik` etiketi (0/1). Sınıflandırma modelleri "aktif mi değil mi" sorusunu bu dosyadan öğrenir. |
 | **6** | `tarama_kutuphanesi.csv` | **Oturum 6'nın girdisi.** Onaylanmış ilaçlardan oluşan sanal tarama kütüphanesi. Eğitilmiş modeller bu daha önce denenmemiş moleküller üzerinde tahmin üretir; aday listesi buradan çıkar. |

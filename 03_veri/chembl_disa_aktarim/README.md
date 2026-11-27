@@ -13,14 +13,22 @@ Oturum 1'in yapılandırma hücresinde `VERI_KAYNAGI = "depo_ham"` yapmanız
 yeterlidir; ChEMBL'e hiç bağlanmadan bütün temizlik hattı bu dosyalardan
 çalışır.
 
+## Dosyalar — indirmek için dosya adına tıklayın
+
 | Dosya | Kayıt | İçerik |
 |---|---|---|
-| `ntrk1_chembl_ic50.csv.zip` | 10.647 | Hedefin **bütün IC50** kayıtları (her ilişki ve birim) |
-| `ntrk1_chembl_tum_aktiviteler.csv.zip` | 26.746 | Hedefin **bütün biyoaktivite** kayıtları (IC50, Ki, Kd, EC50 …) |
+| [**`ntrk1_chembl_ic50.csv.zip`**](https://raw.githubusercontent.com/eygpcr/ebyusem2026-mlqsar/main/03_veri/chembl_disa_aktarim/ntrk1_chembl_ic50.csv.zip) | 10.647 | Hedefin **bütün IC50** kayıtları (her ilişki ve birim) |
+| [**`ntrk1_chembl_tum_aktiviteler.csv.zip`**](https://raw.githubusercontent.com/eygpcr/ebyusem2026-mlqsar/main/03_veri/chembl_disa_aktarim/ntrk1_chembl_tum_aktiviteler.csv.zip) | 26.746 | Hedefin **bütün biyoaktivite** kayıtları (IC50, Ki, Kd, EC50 …) |
 
-Sıkıştırılmış hâlleri 1,4 ve 2,8 MB; açıldıklarında 15,6 ve 38,3 MB olur.
-Bu yüzden depoda zip olarak tutuluyorlar — pandas zip'li CSV'yi doğrudan
-okuyabilir, açmanız gerekmez.
+Bağlantılar dosyayı **doğrudan indirir** (tarayıcıda açılmaz). Alternatif
+olarak dosyanın GitHub sayfasını açıp sağ üstteki indirme düğmesini de
+kullanabilirsiniz.
+
+**Zip'i açmanız gerekmez.** Hem pandas hem de Oturum 1 sıkıştırılmış CSV'yi
+doğrudan okur. İçeriği görmek isterseniz çift tıklamanız yeterlidir.
+
+Boyutlar: sıkıştırılmış 1,4 ve 2,8 MB; açıldığında 15,6 ve 38,3 MB. Depoda
+bu yüzden zip olarak tutuluyorlar.
 
 ---
 
