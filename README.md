@@ -234,34 +234,6 @@ bir sonrakinin girdisi olduğu için klasör adını değiştirmeyin.
 
 ---
 
-## Bilinen sorun: ChEMBL servisinin kararsızlığı
-
-Kurs materyali hazırlanırken ChEMBL web servisinin, isteklerin yaklaşık
-**yarısını** rastgele `500` hatasıyla reddettiği bir dönem gözlendi. Hata
-sorgunun biçiminden bağımsızdır: aynı istek bir denemede başarısız olurken
-bir sonrakinde çalışabilir.
-
-Bu nedenle:
-
-- Not defterlerindeki bütün ChEMBL sorguları **artan bekleme süreleriyle
-  yeniden deneme** (exponential backoff) mantığı içerir.
-- Canlı sorgular başarısız olduğunda oturum kesilmez: not defterleri
-  depodaki **hazır veri dosyalarına** düşer.
-- Oturum 1, iki yolu (canlı sorgu ve dondurulmuş veri) karşılaştırmalı olarak
-  gösterir; bu, veri sürümü bildirmenin neden zorunlu olduğunu anlatan
-  doğal bir örnektir.
-
-Canlı sorgu derste çalışmazsa, bu bir kurulum hatası değildir. Oturum 1'in
-yapılandırma hücresinde `VERI_KAYNAGI` ayarını **`"depo_ham"`** yapın:
-ChEMBL'e hiç bağlanmadan, depodaki ham dışa aktarımdan **bütün temizlik hattı
-yine çalışır** ve canlı sorgunun ürettiği veri setinin birebir aynısı elde
-edilir. Yani oturumdan hiçbir şey kaybetmezsiniz.
-
-Hattı tamamen atlayıp hazır veri setine geçmek isterseniz `"depo"` da bir
-seçenektir, ama `"depo_ham"` öğretici açıdan daha iyidir.
-
----
-
 ## Depo yapısı
 
 ```

@@ -5,8 +5,13 @@ aktarımlardır. Amacı tek: **ChEMBL servisi yanıt vermediğinde Oturum 1'in
 eksiksiz çalışmaya devam etmesi.**
 
 Kurs hazırlığı sırasında ChEMBL'in isteklerin yaklaşık yarısını rastgele `500`
-hatasıyla reddettiği bir dönem gözlendi (ayrıntı için ana
-[README](../../README.md)). Bu dosyalar o riski tamamen ortadan kaldırır.
+hatasıyla reddettiği bir dönem gözlendi. Hata sorgunun biçiminden bağımsızdı:
+aynı istek bir denemede başarısız olurken bir sonrakinde çalışıyordu. Bu
+dosyalar o riski tamamen ortadan kaldırır.
+
+Oturum 1'in yapılandırma hücresinde `VERI_KAYNAGI = "depo_ham"` yapmanız
+yeterlidir; ChEMBL'e hiç bağlanmadan bütün temizlik hattı bu dosyalardan
+çalışır.
 
 | Dosya | Kayıt | İçerik |
 |---|---|---|
