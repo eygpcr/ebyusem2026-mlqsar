@@ -86,11 +86,11 @@ değildir.
 | 10:15–10:30 | Ara | |
 | 10:30–11:15 | [Teori 2: QSAR ve makine öğrenmesinin temelleri](01_teori/) | |
 | 11:15–11:30 | Ara | |
-| 11:30–12:30 | **Oturum 1 — Biyoaktivite verisinin hazırlanması** | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/01_veri_hazirlama.ipynb) |
+| 11:30–12:30 | **Oturum 1 — Biyoaktivite verisinin hazırlanması** | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/01_veri_hazirlama.ipynb) |
 | 12:30–13:30 | Öğle arası | |
-| 13:30–14:45 | **Oturum 2 — Molekülü sayıya çevirmek: betimleyiciler ve parmak izleri** | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/02_ozellik_uretimi.ipynb) |
+| 13:30–14:45 | **Oturum 2 — Molekülü sayıya çevirmek: betimleyiciler ve parmak izleri** | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/02_ozellik_uretimi.ipynb) |
 | 14:45–15:00 | Ara | |
-| 15:00–16:30 | **Oturum 3 — Regresyon modelleri** (I. bölüm: bölünme ve model taraması) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/03_regresyon_modelleri.ipynb) |
+| 15:00–16:30 | **Oturum 3 — Regresyon modelleri** (I. bölüm: bölünme ve model taraması) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/03_regresyon_modelleri.ipynb) |
 
 ### 2. Gün — 29 Kasım 2026, Pazar
 
@@ -98,14 +98,14 @@ değildir.
 |---|---|---|
 | 09:30–10:15 | [Teori 3: Moleküler temsil, açıklanabilirlik ve uygulanabilirlik alanı](01_teori/) | |
 | 10:15–10:30 | Ara | |
-| 10:30–11:45 | **Oturum 3 — Regresyon modelleri** (II. bölüm: Optuna, çapraz doğrulama, y-randomizasyon) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/03_regresyon_modelleri.ipynb) |
+| 10:30–11:45 | **Oturum 3 — Regresyon modelleri** (II. bölüm: Optuna, çapraz doğrulama, y-randomizasyon) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/03_regresyon_modelleri.ipynb) |
 | 11:45–12:00 | Ara | |
-| 12:00–12:45 | **Oturum 4 — Sınıflandırma modelleri** (I. bölüm) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/04_siniflandirma_modelleri.ipynb) |
+| 12:00–12:45 | **Oturum 4 — Sınıflandırma modelleri** (I. bölüm) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/04_siniflandirma_modelleri.ipynb) |
 | 12:45–13:45 | Öğle arası | |
-| 13:45–14:45 | **Oturum 4 — Sınıflandırma modelleri** (II. bölüm: metrikler, karar eşiği) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/04_siniflandirma_modelleri.ipynb) |
+| 13:45–14:45 | **Oturum 4 — Sınıflandırma modelleri** (II. bölüm: metrikler, karar eşiği) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/04_siniflandirma_modelleri.ipynb) |
 | 14:45–15:00 | Ara | |
-| 15:00–15:45 | **Oturum 5 — Model karşılaştırma, SHAP ve uygulanabilirlik alanı** | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/05_karsilastirma_shap_ad.ipynb) |
-| 15:45–16:30 | **Oturum 6 — Yeni molekülleri taramak ve SDF çıktısı** + değerlendirme | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/06_tahmin_ve_sdf.ipynb) |
+| 15:00–15:45 | **Oturum 5 — Model karşılaştırma, SHAP ve uygulanabilirlik alanı** | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/05_karsilastirma_shap_ad.ipynb) |
+| 15:45–16:30 | **Oturum 6 — Yeni molekülleri taramak ve SDF çıktısı** + değerlendirme | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/06_tahmin_ve_sdf.ipynb) |
 
 > Not defterleri **sırayla** çalıştırılmak üzere tasarlanmıştır: her oturumun
 > çıktısı bir sonrakinin girdisidir. Bir oturumu kaçıranlar, depodaki hazır
@@ -152,25 +152,32 @@ nedenle onkoloji dışında analjezik geliştirme çalışmalarının da hedefid
 
 ## Veri setleri
 
-Bütün veri dosyaları [`veri/`](veri/) klasöründedir ve
-[`araclar/veri_uret.py`](araclar/veri_uret.py) betiğiyle ChEMBL'den
+Bütün veri dosyaları [`03_veri/`](03_veri/) klasöründedir ve
+[`04_araclar/veri_uret.py`](04_araclar/veri_uret.py) betiğiyle ChEMBL'den
 üretilmiştir. Not defterleri bu dosyaları doğrudan GitHub'dan okur; ayrıca
 indirmeniz gerekmez.
 
 ### Hangi dosya ne için?
 
-| Dosya | Ne işe yarar? |
-|---|---|
-| `ntrk1_regresyon.csv` | **Oturum 3'ün girdisi.** Her satır bir molekül: SMILES yapısı ve ölçülmüş `pIC50` değeri. Regresyon modelleri aktiviteyi sayı olarak tahmin etmeyi bu dosyadan öğrenir. |
-| `ntrk1_siniflandirma.csv` | **Oturum 4'ün girdisi.** Aynı moleküller, ek olarak `Aktiflik` etiketi (0/1). Sınıflandırma modelleri "aktif mi değil mi" sorusunu bu dosyadan öğrenir. |
-| `tarama_kutuphanesi.csv` | **Oturum 6'nın girdisi.** Onaylanmış ilaçlardan oluşan sanal tarama kütüphanesi. Eğitilmiş modeller bu daha önce denenmemiş moleküller üzerinde tahmin üretir ve aday listesi buradan çıkar. |
-| `ntrk1_ham_chembl.csv` | **Oturum 1'in başlangıç noktası.** ChEMBL'den geldiği gibi, hiç işlenmemiş kayıtlar. Temizlik hattı bu dosya üzerinde kurulur; canlı ChEMBL sorgusu çalışmazsa yedek olarak da kullanılır. |
-| `ntrk1_aktivite_tipleri.csv` | Hedefte hangi ölçüm tipinin (IC50, Ki, Kd, EC50) kaç kaydı olduğunu gösterir. Oturum 1'deki "neden IC50 ile çalışıyoruz?" kararının dayanağıdır. |
-| `ntrk1_veri_kunyesi.json` | Veri setinin kimlik kartı: üretim tarihi, uygulanan filtreler, küratörlük adımları ve sınıf dengesi. Çalışmanın tekrar üretilebilmesi için saklanır. |
-| `chembl_disa_aktarim/` | **ChEMBL çökerse sigortanız.** ChEMBL'in web arayüzünden indirilmiş ham dışa aktarımlar (zip'li). Oturum 1, ChEMBL'e hiç bağlanmadan bu dosyalardan bütün temizlik hattını çalıştırabilir ve **birebir aynı** veri setini üretir. |
+Tablo **oturum sırasına** göre düzenlenmiştir: üstteki dosyalar kursun başında,
+alttakiler sonunda kullanılır.
+
+| Oturum | Dosya | Ne işe yarar? |
+|---|---|---|
+| **1** | `ntrk1_aktivite_tipleri.csv` | Hedefte hangi ölçüm tipinin (IC50, Ki, Kd, EC50) kaç kaydı olduğunu gösterir. Oturum 1'deki **"neden IC50 ile çalışıyoruz?"** kararının dayanağıdır. |
+| **1** | `ntrk1_ham_chembl.csv` | **Temizlik hattının başlangıç noktası.** ChEMBL'den geldiği gibi, hiç işlenmemiş kayıtlar. Oturum 1 bu dosyayı temiz bir veri setine dönüştürür. |
+| **1** | `chembl_disa_aktarim/` | **ChEMBL çökerse sigortanız.** ChEMBL'in web arayüzünden indirilmiş ham dışa aktarımlar (zip'li, değiştirilmemiş). Oturum 1 bunları Drive'ınıza indirip ChEMBL'e hiç bağlanmadan bütün hattı çalıştırabilir ve **birebir aynı** veri setini üretir. |
+| **3** | `ntrk1_regresyon.csv` | **Oturum 3'ün girdisi.** Her satır bir molekül: SMILES yapısı ve ölçülmüş `pIC50` değeri. Regresyon modelleri aktiviteyi sayı olarak tahmin etmeyi bu dosyadan öğrenir. |
+| **4** | `ntrk1_siniflandirma.csv` | **Oturum 4'ün girdisi.** Aynı moleküller, ek olarak `Aktiflik` etiketi (0/1). Sınıflandırma modelleri "aktif mi değil mi" sorusunu bu dosyadan öğrenir. |
+| **6** | `tarama_kutuphanesi.csv` | **Oturum 6'nın girdisi.** Onaylanmış ilaçlardan oluşan sanal tarama kütüphanesi. Eğitilmiş modeller bu daha önce denenmemiş moleküller üzerinde tahmin üretir; aday listesi buradan çıkar. |
+| — | `ntrk1_veri_kunyesi.json` | Veri setinin kimlik kartı: üretim tarihi, uygulanan filtreler, küratörlük adımları ve sınıf dengesi. Çalışmanın tekrar üretilebilmesi için saklanır. |
+
+> **Oturum 2** ve **Oturum 5** bu klasörden dosya okumaz: Oturum 2 kendi özellik
+> dosyalarını üretir, Oturum 5 ise Oturum 3 ve 4'ün çıktılarını kullanır. İkisi
+> de sonuçlarını Google Drive'daki proje klasörünüze yazar.
 
 Dosyaların ayrıntılı künyesi ve kolon şeması
-[`veri/README.md`](veri/README.md) dosyasındadır.
+[`03_veri/README.md`](03_veri/README.md) dosyasındadır.
 
 ---
 
@@ -264,9 +271,9 @@ ebyusem2026-mlqsar/
 ├── ILERI_OKUMA.md               kaynaklar ve devam yolları
 ├── LICENSE                      CC BY 4.0
 ├── 01_teori/                    teorik oturumların içerik planı
-├── notebooks/                   altı Colab not defteri
-├── veri/                        hazır veri setleri ve künye
-└── araclar/                     veri üretim betiği (eğitmen için)
+├── 02_notebooks/                altı Colab not defteri
+├── 03_veri/                     veri setleri ve ham ChEMBL dışa aktarımları
+└── 04_araclar/                  veri üretim betiği (eğitmen için)
 ```
 
 ---

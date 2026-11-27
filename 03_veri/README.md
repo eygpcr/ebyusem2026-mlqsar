@@ -1,6 +1,6 @@
 # Veri Setleri
 
-Bu klasördeki bütün dosyalar [`../araclar/veri_uret.py`](../araclar/veri_uret.py)
+Bu klasördeki bütün dosyalar [`../04_araclar/veri_uret.py`](../04_araclar/veri_uret.py)
 betiğiyle ChEMBL web servisinden üretilmiştir.
 
 | | |
@@ -56,14 +56,14 @@ küçük moleküllerden oluşur. Oturum 6'da bir **ilaç yeniden konumlandırma*
 
 ```bash
 cd araclar
-python veri_uret.py --cikti ../veri --esik 7.5
+python veri_uret.py --cikti ../03_veri --esik 7.5
 ```
 
 İndirilmiş ham dosyayı yeniden kullanarak yalnızca temizlik hattını
 tekrarlamak için:
 
 ```bash
-python veri_uret.py --cikti ../veri --esik 7.5 --ham-kullan
+python veri_uret.py --cikti ../03_veri --esik 7.5 --ham-kullan
 ```
 
 > ChEMBL sürekli güncellenir; yeniden ürettiğinizde sayılar bu belgedeki

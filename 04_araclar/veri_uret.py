@@ -2,13 +2,13 @@
 """
 NTRK1 (TrkA, CHEMBL2815) referans veri setlerini uretir.
 
-Bu betik, kurs deposundaki `veri/` klasorundeki hazir CSV dosyalarini uretir ve
+Bu betik, kurs deposundaki `03_veri/` klasorundeki hazir CSV dosyalarini uretir ve
 notebook 01'deki "canli ChEMBL cekimi" ile AYNI temizlik mantigini uygular;
 boylece katilimcilar iki yolu karsilastirabilir.
 
 Kullanim:
-    python veri_uret.py --cikti ../veri
-    python veri_uret.py --cikti ../veri --esik 7.5
+    python veri_uret.py --cikti ../03_veri
+    python veri_uret.py --cikti ../03_veri --esik 7.5
 
 Uretilen dosyalar:
     ntrk1_ham_chembl.csv       Ham IC50 kayitlari (ChEMBL'den geldigi gibi)
@@ -252,7 +252,7 @@ def denge_tablosu(df: pd.DataFrame, hedef_kolon: str) -> pd.DataFrame:
 def main() -> None:
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--cikti", default="../veri", help="Cikti klasoru")
+    ap.add_argument("--cikti", default="../03_veri", help="Cikti klasoru")
     ap.add_argument("--esik", type=float, default=VARSAYILAN_ESIK,
                     help=f"Siniflandirma esigi (varsayilan {VARSAYILAN_ESIK})")
     ap.add_argument("--tarama-atla", action="store_true",

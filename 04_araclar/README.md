@@ -8,19 +8,19 @@ dosyalarını doğrudan okur.
 
 ## `veri_uret.py`
 
-[`veri/`](../veri/) klasöründeki referans veri setlerini ChEMBL web
+[`03_veri/`](../03_veri/) klasöründeki referans veri setlerini ChEMBL web
 servisinden üretir. Oturum 1'deki "canlı ChEMBL çekimi" ile **aynı temizlik
 mantığını** uygular; böylece katılımcılar iki yolu karşılaştırabilir.
 
 ### Kullanım
 
 ```bash
-python veri_uret.py --cikti ../veri --esik 7.5
+python veri_uret.py --cikti ../03_veri --esik 7.5
 ```
 
 | Seçenek | Açıklama |
 |---|---|
-| `--cikti` | Çıktı klasörü (varsayılan `../veri`) |
+| `--cikti` | Çıktı klasörü (varsayılan `../03_veri`) |
 | `--esik` | Sınıflandırma eşiği, pIC50 (varsayılan 7.5) |
 | `--ham-kullan` | Diskteki ham CSV'yi kullan, yeniden indirme |
 | `--tarama-atla` | Onaylanmış ilaç kütüphanesini indirmeyi atla |

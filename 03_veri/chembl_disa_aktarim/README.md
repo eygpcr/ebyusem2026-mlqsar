@@ -34,7 +34,7 @@ Okumak için:
 import pandas as pd
 
 url = ("https://raw.githubusercontent.com/eygpcr/ebyusem2026-mlqsar/main/"
-       "veri/chembl_disa_aktarim/ntrk1_chembl_ic50.csv.zip")
+       "03_veri/chembl_disa_aktarim/ntrk1_chembl_ic50.csv.zip")
 df = pd.read_csv(url, sep=";", compression="zip", low_memory=False)
 ```
 
@@ -71,7 +71,7 @@ yolunun ürettiği veri setinin **birebir aynısı** elde edilir:
 | Dışa aktarımdaki IC50 kaydı | 10.647 |
 | IC50 + kesin (`=`) + `nM` süzgeci | 8.414 |
 | Temizlik hattı sonrası molekül | 4.599 |
-| `veri/ntrk1_regresyon.csv` ile karşılaştırma | aynı 4.599 molekül, en büyük `pIC50` farkı **0,00000000** |
+| `03_veri/ntrk1_regresyon.csv` ile karşılaştırma | aynı 4.599 molekül, en büyük `pIC50` farkı **0,00000000** |
 
 Yani çevrimdışı yol bir "idare eder" çözüm değil; tam eşdeğeridir.
 

@@ -104,7 +104,7 @@ bir ek adım gerekir.
 ### Eğitmenin yapacağı
 
 1. `ebyusem2026-mlqsar.zip` arşivini açın.
-2. Google Drive'da bir klasör oluşturup `notebooks/` ve `veri/` içeriğini
+2. Google Drive'da bir klasör oluşturup `02_notebooks/` ve `03_veri/` içeriğini
    yükleyin.
 3. Klasörü "bağlantıya sahip herkes görüntüleyebilir" olarak paylaşın.
 
@@ -114,7 +114,7 @@ bir ek adım gerekir.
    *Birlikte aç* → *Google Colaboratory*. Ardından
    *Dosya → Drive'a kopya kaydet* ile kendi kopyanızı alın.
 2. **Veri dosyalarını proje klasörüne kopyalayın.** Not defterleri çıktıları
-   `Drive'ım/EBYUSEM2026_MLQSAR/` klasöründe arar. Paylaşılan `veri/`
+   `Drive'ım/EBYUSEM2026_MLQSAR/` klasöründe arar. Paylaşılan `03_veri/`
    klasöründeki şu dosyaları oraya kopyalayın:
 
    - `ntrk1_siniflandirma.csv`

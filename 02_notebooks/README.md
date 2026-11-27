@@ -5,12 +5,12 @@ Bilgisayarınıza yazılım kurmanız gerekmez.
 
 | Oturum | Dosya | Konu | Colab |
 |---|---|---|---|
-| 1 | `01_veri_hazirlama.ipynb` | ChEMBL'den veri çekme, temizlik, pIC50 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/01_veri_hazirlama.ipynb) |
-| 2 | `02_ozellik_uretimi.ipynb` | Betimleyiciler, ECFP4, MACCS | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/02_ozellik_uretimi.ipynb) |
-| 3 | `03_regresyon_modelleri.ipynb` | LazyPredict, Optuna, CV, y-randomizasyon | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/03_regresyon_modelleri.ipynb) |
-| 4 | `04_siniflandirma_modelleri.ipynb` | Dengesizlik, ROC/PR, MCC, karar eşiği | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/04_siniflandirma_modelleri.ipynb) |
-| 5 | `05_karsilastirma_shap_ad.ipynb` | Model karşılaştırma, SHAP, Williams grafiği | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/05_karsilastirma_shap_ad.ipynb) |
-| 6 | `06_tahmin_ve_sdf.ipynb` | Sanal tarama, uygulanabilirlik alanı, SDF çıktısı | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/06_tahmin_ve_sdf.ipynb) |
+| 1 | `01_veri_hazirlama.ipynb` | ChEMBL'den veri çekme, temizlik, pIC50 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/01_veri_hazirlama.ipynb) |
+| 2 | `02_ozellik_uretimi.ipynb` | Betimleyiciler, ECFP4, MACCS | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/02_ozellik_uretimi.ipynb) |
+| 3 | `03_regresyon_modelleri.ipynb` | LazyPredict, Optuna, CV, y-randomizasyon | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/03_regresyon_modelleri.ipynb) |
+| 4 | `04_siniflandirma_modelleri.ipynb` | Dengesizlik, ROC/PR, MCC, karar eşiği | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/04_siniflandirma_modelleri.ipynb) |
+| 5 | `05_karsilastirma_shap_ad.ipynb` | Model karşılaştırma, SHAP, Williams grafiği | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/05_karsilastirma_shap_ad.ipynb) |
+| 6 | `06_tahmin_ve_sdf.ipynb` | Sanal tarama, uygulanabilirlik alanı, SDF çıktısı | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/02_notebooks/06_tahmin_ve_sdf.ipynb) |
 
 ---
 
