@@ -4,7 +4,7 @@
 
 Erzincan Binali Yıldırım Üniversitesi — Sürekli Eğitim Uygulama ve Araştırma Merkezi
 
-- **Tarih:** 14–15 Kasım 2026 (Cumartesi – Pazar), 09:30–16:30
+- **Tarih:** 28–29 Kasım 2026 (Cumartesi – Pazar), 09:30–16:30
 - **Süre:** 12 saat / 2 gün
 - **Yer:** EBYÜ Sürekli Eğitim Merkezi Derslikleri
 - **Kontenjan:** 15 kursiyer
@@ -78,7 +78,7 @@ değildir.
 
 ## Program
 
-### 1. Gün — 14 Kasım 2026, Cumartesi
+### 1. Gün — 28 Kasım 2026, Cumartesi
 
 | Saat | Oturum | Not defteri |
 |---|---|---|
@@ -92,7 +92,7 @@ değildir.
 | 14:45–15:00 | Ara | |
 | 15:00–16:30 | **Oturum 3 — Regresyon modelleri** (I. bölüm: bölünme ve model taraması) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eygpcr/ebyusem2026-mlqsar/blob/main/notebooks/03_regresyon_modelleri.ipynb) |
 
-### 2. Gün — 15 Kasım 2026, Pazar
+### 2. Gün — 29 Kasım 2026, Pazar
 
 | Saat | Oturum | Not defteri |
 |---|---|---|
