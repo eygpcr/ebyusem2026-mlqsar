@@ -75,6 +75,12 @@ Süreler Colab'ın ücretsiz CPU çalışma zamanı içindir. Ders akışı sık
 Oturum 3 ve 4'te `OPTUNA_DENEME = 10` ve `Y_RANDOM_TEKRAR = 5` yapmak toplam
 süreyi yarıdan aza indirir; kavramlar aynı kalır.
 
+### ChEMBL yanıt vermezse
+
+Oturum 1'in yapılandırma hücresinde `VERI_KAYNAGI = "depo_ham"` yapın.
+ChEMBL'e hiç bağlanmadan, depodaki ham dışa aktarımdan bütün temizlik hattı
+çalışır ve canlı sorgunun ürettiği veri setinin birebir aynısı elde edilir.
+
 ### GPU gerekmez
 
 Kullanılan modeller (ağaç toplulukları, SVM, gradyan artırma) CPU üzerinde

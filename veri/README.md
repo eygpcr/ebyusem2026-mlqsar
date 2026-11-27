@@ -25,6 +25,7 @@ betiğiyle ChEMBL web servisinden üretilmiştir.
 | `tarama_kutuphanesi.csv` | 3.311 | Onaylanmış küçük moleküller — Oturum 6'nın sanal tarama kütüphanesi |
 | `ntrk1_aktivite_tipleri.csv` | 6 | Hedefteki aktivite tiplerinin dağılımı |
 | `ntrk1_veri_kunyesi.json` | — | Üretim künyesi: tarih, filtreler, küratörlük adımları, sınıf dengesi |
+| [`chembl_disa_aktarim/`](chembl_disa_aktarim/) | 10.647 + 26.746 | ChEMBL web arayüzünden indirilmiş ham dışa aktarımlar (zip'li). ChEMBL erişilemezse Oturum 1 bu dosyalardan çalışır. |
 
 Veri setinin nasıl temizlendiği, hangi adımda kaç molekülün elendiği ve
 dağılımın nasıl göründüğü **Oturum 1'de** adım adım üretilip tartışılmaktadır.

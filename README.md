@@ -167,6 +167,7 @@ indirmeniz gerekmez.
 | `ntrk1_ham_chembl.csv` | **Oturum 1'in başlangıç noktası.** ChEMBL'den geldiği gibi, hiç işlenmemiş kayıtlar. Temizlik hattı bu dosya üzerinde kurulur; canlı ChEMBL sorgusu çalışmazsa yedek olarak da kullanılır. |
 | `ntrk1_aktivite_tipleri.csv` | Hedefte hangi ölçüm tipinin (IC50, Ki, Kd, EC50) kaç kaydı olduğunu gösterir. Oturum 1'deki "neden IC50 ile çalışıyoruz?" kararının dayanağıdır. |
 | `ntrk1_veri_kunyesi.json` | Veri setinin kimlik kartı: üretim tarihi, uygulanan filtreler, küratörlük adımları ve sınıf dengesi. Çalışmanın tekrar üretilebilmesi için saklanır. |
+| `chembl_disa_aktarim/` | **ChEMBL çökerse sigortanız.** ChEMBL'in web arayüzünden indirilmiş ham dışa aktarımlar (zip'li). Oturum 1, ChEMBL'e hiç bağlanmadan bu dosyalardan bütün temizlik hattını çalıştırabilir ve **birebir aynı** veri setini üretir. |
 
 Dosyaların ayrıntılı künyesi ve kolon şeması
 [`veri/README.md`](veri/README.md) dosyasındadır.
@@ -243,8 +244,14 @@ Bu nedenle:
   gösterir; bu, veri sürümü bildirmenin neden zorunlu olduğunu anlatan
   doğal bir örnektir.
 
-Canlı sorgu derste çalışmazsa, bu bir kurulum hatası değildir — `VERI_KAYNAGI`
-ayarını `"depo"` yapıp devam edin.
+Canlı sorgu derste çalışmazsa, bu bir kurulum hatası değildir. Oturum 1'in
+yapılandırma hücresinde `VERI_KAYNAGI` ayarını **`"depo_ham"`** yapın:
+ChEMBL'e hiç bağlanmadan, depodaki ham dışa aktarımdan **bütün temizlik hattı
+yine çalışır** ve canlı sorgunun ürettiği veri setinin birebir aynısı elde
+edilir. Yani oturumdan hiçbir şey kaybetmezsiniz.
+
+Hattı tamamen atlayıp hazır veri setine geçmek isterseniz `"depo"` da bir
+seçenektir, ama `"depo_ham"` öğretici açıdan daha iyidir.
 
 ---
 

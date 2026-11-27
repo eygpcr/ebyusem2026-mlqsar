@@ -152,7 +152,7 @@ saklayabilirsiniz.
 | Sorun | Çözüm |
 |---|---|
 | Drive bağlanmıyor | Açılır pencere engelleyicisini kapatın; kişisel Google hesabı kullanın |
-| ChEMBL sorgusu hata veriyor | Beklenen bir durumdur; `VERI_KAYNAGI = "depo"` yapıp devam edin (bkz. README) |
+| ChEMBL sorgusu hata veriyor | Beklenen bir durumdur; Oturum 1'de `VERI_KAYNAGI = "depo_ham"` yapın — ChEMBL'e bağlanmadan temizlik hattı yine çalışır |
 | Hücre çok uzun sürüyor | Oturum 3 ve 4'te `OPTUNA_DENEME` değerini düşürün (ör. 15) |
 | "Dosya bulunamadı" hatası | Önceki oturumun not defterini **aynı Drive klasörüyle** çalıştırdığınızdan emin olun |
 | Çalışma zamanı koptu | *Çalışma zamanı → Tümünü çalıştır* ile baştan çalıştırın; Drive'daki çıktılar korunur |
