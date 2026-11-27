@@ -33,12 +33,12 @@ Kurs boyunca tek bir gerçek hedef üzerinde ilerlenir: **NTRK1 (TrkA)**. Veri
 ChEMBL'den çekilir, temizlenir, moleküller sayısal temsillere çevrilir,
 regresyon ve sınıflandırma modelleri kurulup optimize edilir, sonuçlar
 açıklanabilir yapay zekâ (SHAP) ile yorumlanır, uygulanabilirlik alanı
-belirlenir ve son olarak yeni moleküller taranarak aday listesi **SDF
-dosyaları** hâlinde üretilir.
+belirlenir ve son olarak yeni moleküller taranarak aday listesi SDF
+dosyaları hâlinde üretilir.
 
 **Kapsam sınırı.** Kursta moleküler doklama ve dinamik simülasyon
 yürütülmemektedir. Odak, bir ML-QSAR iş akışının doğru biçimde kurulması ve
-**dürüst biçimde değerlendirilmesidir**. Üretilen SDF dosyaları, doklama
+değerlendirilmesidir. Üretilen SDF dosyaları, doklama
 çalışmalarına girdi olacak biçimde hazırlanır.
 
 ### Öğrenim kazanımları
